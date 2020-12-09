@@ -10,8 +10,9 @@ package sql;
  * @author johnn
  */
 public class DBSettings {
-    public static final String DB_NAME = "MYSQL";
-    public static String DB_URL = "";
+    public static final String DB = "mysql";
+    public static String DB_NAME = "sol_e_riso";
+    public static String DB_URL = "jdbc:mysql://localhost:3306/sol_e_riso?useTimezone=true&serverTimezone=UTC";
     public static String DB_USER = "root";
-    public static String DB_PASSWORD = "";
+    public static String DB_PASSWORD = "123456";
 }

@@ -23,7 +23,9 @@ public class SQLConnection {
     public static synchronized Connection getConnectionInstance() {
         try {
             if (connection == null || connection.isClosed()) {
+                // Class.forName("com.mysql.jdbc.Driver");
                 connection = DriverManager.getConnection(DBSettings.DB_URL, DBSettings.DB_USER, DBSettings.DB_PASSWORD);
+                System.out.println("Success!");
             } else {
                 System.out.println("Connection is null or open!");
             }

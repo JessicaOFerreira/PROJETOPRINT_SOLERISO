@@ -6,17 +6,21 @@
 package soleriso;
 
 import java.net.URL;
+import java.sql.Connection;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import sql.SQLConnection;
 
 /**
  *
  * @author johnn
  */
 public class FXMLDocumentController implements Initializable {
+    
+    private Connection connection;
     
     @FXML
     private Label label;
@@ -30,6 +34,8 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        System.out.println("Initialize");
+        this.connection = SQLConnection.getConnectionInstance();
     }    
     
 }
