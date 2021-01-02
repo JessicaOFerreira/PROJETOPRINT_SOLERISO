@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+  <children>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" style="-fx-background-color: linear-gradient(white, white, skyblue);" VBox.vgrow="ALWAYS">
+         <children>
+            <ImageView fitHeight="77.0" fitWidth="150.0" layoutX="245.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/logo_sol&amp;riso.png" />
+               </image>
+            </ImageView>
+            <Button id="btn_back" layoutX="14.0" layoutY="24.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="68.0" style="-fx-background-color: #d1d1d1; -fx-background-radius: 10px;" text="VOLTAR" textFill="#69686b">
+               <font>
+                  <Font name="Corbel" size="12.0" />
+               </font>
+            </Button>
+            <Label layoutX="266.0" layoutY="82.0" text="Pacientes">
+               <font>
+                  <Font name="Corbel" size="27.0" />
+               </font>
+            </Label>
+            <Button id="new_patient_btn" layoutX="17.0" layoutY="114.0" mnemonicParsing="false" style="-fx-background-radius: 10px; -fx-border-width: 0 0 0 0; -fx-background-color: #18d975;" text="NOVO" textFill="#69686b">
+               <font>
+                  <Font name="Corbel" size="15.0" />
+               </font>
+            </Button>
+            <TextField id="patient_filter" layoutX="407.0" layoutY="115.0" prefHeight="26.0" prefWidth="159.0" promptText="Filtrar por nome" style="-fx-background-color: transparent; -fx-border-color: #0b97b0; -fx-border-width: 0 0 1 0;" />
+            <Button id="patient_filter_btn" layoutX="566.0" layoutY="117.0" mnemonicParsing="false" style="-fx-background-color: #d3d3d3; -fx-background-radius: 10px;" text="FILTRAR" textFill="#69686b">
+               <font>
+                  <Font name="Corbel" size="12.0" />
+               </font>
+            </Button>
+            <ListView id="patient_list" layoutX="16.0" layoutY="179.0" prefHeight="188.0" prefWidth="608.0" />
+            <Button layoutX="555.0" layoutY="373.0" mnemonicParsing="false" style="-fx-background-color: #d3d3d3; -fx-background-radius: 10px;" text="PRÓXIMO" textFill="#69686b">
+               <font>
+                  <Font name="Corbel" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="18.0" layoutY="373.0" mnemonicParsing="false" style="-fx-background-color: #d3d3d3; -fx-background-radius: 10px;" text="ANTERIOR" textFill="#69686b">
+               <font>
+                  <Font name="Corbel" size="12.0" />
+               </font>
+            </Button>
+            <Label layoutX="17.0" layoutY="156.0" text="NOME" textFill="#69686b">
+               <font>
+                  <Font name="Corbel" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="558.0" layoutY="156.0" text="AÇÕES" textFill="#69686b">
+               <font>
+                  <Font name="Corbel" size="14.0" />
+               </font>
+            </Label>
+         </children>
+    </AnchorPane>
+  </children>
+</VBox>
