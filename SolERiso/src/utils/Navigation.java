@@ -24,7 +24,7 @@ public class Navigation {
         // Singleton application
     }
     
-    public static void goToScreen(ActionEvent event, URL url, String screenTitle) throws IOException {
+    public static void goToScreen(ActionEvent event, URL url, String screenTitle, Boolean closeOriginScreen) throws IOException {
         Parent root = FXMLLoader.load(url);
         
         Stage stage = new Stage();
@@ -34,6 +34,8 @@ public class Navigation {
         stage.setScene(scene);
         stage.show();
         
-        ((Node)(event.getSource())).getScene().getWindow().hide();
+        if (closeOriginScreen) {
+            ((Node)(event.getSource())).getScene().getWindow().hide();
+        }
     }
 }

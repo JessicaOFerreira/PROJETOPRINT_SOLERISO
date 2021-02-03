@@ -21,7 +21,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     void goToRegisterScreen(ActionEvent event) throws IOException {
         URL url = getClass().getResource("/screens/FXMLRegister.fxml");
-        Navigation.goToScreen(event, url, "Cadastre-se");
+        Navigation.goToScreen(event, url, "Cadastre-se", true);
     }
     
     @Override
