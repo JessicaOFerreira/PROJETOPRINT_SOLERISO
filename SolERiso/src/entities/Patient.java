@@ -10,11 +10,15 @@ package entities;
  * @author Nicolas
  */
 public class Patient {
+    private int id;
     private String name;
     private String cpf;
     private String phone_number;
     private int address_id;
     
+    public int getId() {
+        return id;
+    }
     public String getName() {
         return name;
     }

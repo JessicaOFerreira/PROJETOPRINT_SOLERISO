@@ -44,6 +44,7 @@ public class DaoPatient {
             throw new DaoException("PROBLEMA AO SALVAR Paciente - Contate o ADM");
         }
     }
+    
     public List<Patient> getContatos() throws DaoException {
         try{
             this.connection = SQLConnection.getConnectionInstance();
@@ -66,6 +67,23 @@ public class DaoPatient {
         } catch (Exception ex) {
             ex.printStackTrace();
             throw new DaoException("PROBLEMA AO LISTAR Pacientes - Contate o ADM");
+        }
+    }
+    
+        public void remove(Patient patient) throws DaoException {
+        try {
+            this.connection = SQLConnection.getConnectionInstance();
+            this.statement = connection.prepareStatement(SQLQueries.Patient.REGISTER); 
+            
+            this.statement.setInt(1, patient.getId());
+            
+            result = this.statement.executeQuery();
+           
+            this.connection.close();
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            throw new DaoException("PROBLEMA AO DELETAR Paciente - Contate o ADM");
         }
     }
 }

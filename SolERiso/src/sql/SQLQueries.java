@@ -22,6 +22,7 @@ public class SQLQueries {
          public static final String REGISTER = "INSERT INTO patient (name, cpf, phone_number, address_id)"
             +" VALUES (?,?,?,?)";
          public static final String LIST = "SELECT * FROM patient";
+         public static final String DELETE = "DELETE FROM patient WHERE patient_id = ?";         
     }
     
 }
