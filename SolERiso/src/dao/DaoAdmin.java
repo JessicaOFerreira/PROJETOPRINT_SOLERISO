@@ -55,4 +55,22 @@ public class DaoAdmin implements IDaoAdmin {
         }
     }
     
+    public void register(String login, String password, boolean dentist) throws DaoException {
+        try {
+            this.connection = SQLConnection.getConnectionInstance();
+            this.statement = connection.prepareStatement(SQLQueries.Admin.REGISTER); 
+            
+            this.statement.setString(1, login);
+            this.statement.setString(2, password);
+            this.statement.setBoolean(3, dentist);
+            
+            result = this.statement.executeQuery();
+           
+            this.connection.close();
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            throw new DaoException("PROBLEMA AO SALVAR Dentista - Contate o ADM");
+        }
+    }
 }

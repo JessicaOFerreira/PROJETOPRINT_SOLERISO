@@ -14,4 +14,5 @@ import exceptions.DaoException;
  */
 public interface IDaoAdmin {
     public Admin login(String login, String password) throws DaoException;
+    public Admin register(String login, String password_admin, boolean dentist) throws DaoException;
 }
