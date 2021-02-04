@@ -30,5 +30,7 @@ public class SQLQueries {
                                              + "SET phone_number = ?"
                                              + "SET address_id = ?";
     }
+    public static class Scheduling {
+    }
     
 }
