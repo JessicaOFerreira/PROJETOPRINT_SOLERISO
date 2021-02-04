@@ -16,6 +16,11 @@ public class SQLQueries {
     public static class Admin {
          public static final String LOGIN = "SELECT * FROM admin WHERE login = ? AND admin_password = ?";
          public static final String REGISTER = "INSERT INTO admin (login, admin_password , dentist)"
-            +" VALUES (?,?,?,?,?,?)";
+            +" VALUES (?,?,?)";
     }
+    public static class Patient {
+         public static final String REGISTER = "INSERT INTO patient (name, cpf, phone_number, address_id)"
+            +" VALUES (?,?,?,?)";
+    }
+    
 }
