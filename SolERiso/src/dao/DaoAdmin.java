@@ -55,14 +55,14 @@ public class DaoAdmin implements IDaoAdmin {
         }
     }
     
-    public void register(String login, String password, boolean dentist) throws DaoException {
+    public void register(Admin admin) throws DaoException {
         try {
             this.connection = SQLConnection.getConnectionInstance();
             this.statement = connection.prepareStatement(SQLQueries.Admin.REGISTER); 
             
-            this.statement.setString(1, login);
-            this.statement.setString(2, password);
-            this.statement.setBoolean(3, dentist);
+            this.statement.setString(1, admin.getLogin());
+            this.statement.setString(2, admin.getPassword());
+            this.statement.setBoolean(3, admin.getIsDentist());
             
             result = this.statement.executeQuery();
            
@@ -72,5 +72,10 @@ public class DaoAdmin implements IDaoAdmin {
             ex.printStackTrace();
             throw new DaoException("PROBLEMA AO SALVAR Dentista - Contate o ADM");
         }
+    }
+
+    @Override
+    public Admin register(String login, String password_admin, boolean dentist) throws DaoException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
