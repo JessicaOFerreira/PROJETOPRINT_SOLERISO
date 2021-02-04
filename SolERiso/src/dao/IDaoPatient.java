@@ -14,4 +14,5 @@ import exceptions.DaoException;
  */
 public interface IDaoPatient {
     public Patient register(String name, String cpf, String phone_number, int address_id) throws DaoException;
+    public Patient list() throws DaoException;
 }

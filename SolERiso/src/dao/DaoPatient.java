@@ -11,6 +11,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import sql.SQLConnection;
 import sql.SQLQueries;
 
@@ -40,6 +42,30 @@ public class DaoPatient {
         } catch (Exception ex) {
             ex.printStackTrace();
             throw new DaoException("PROBLEMA AO SALVAR Paciente - Contate o ADM");
+        }
+    }
+    public List<Patient> getContatos() throws DaoException {
+        try{
+            this.connection = SQLConnection.getConnectionInstance();
+            this.statement = connection.prepareStatement(SQLQueries.Patient.LIST);
+           
+            result = this.statement.executeQuery();
+            
+            List<Patient> patients = new ArrayList<>();
+            
+            Patient patient;
+            
+            while (result.next()) {
+                patient = new Patient();
+                patients.add(patient);
+            }
+            this.connection.close();
+
+            return patients;
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            throw new DaoException("PROBLEMA AO LISTAR Pacientes - Contate o ADM");
         }
     }
 }

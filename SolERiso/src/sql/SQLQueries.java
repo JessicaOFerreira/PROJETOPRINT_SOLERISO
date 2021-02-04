@@ -21,6 +21,7 @@ public class SQLQueries {
     public static class Patient {
          public static final String REGISTER = "INSERT INTO patient (name, cpf, phone_number, address_id)"
             +" VALUES (?,?,?,?)";
+         public static final String LIST = "SELECT * FROM patient";
     }
     
 }
