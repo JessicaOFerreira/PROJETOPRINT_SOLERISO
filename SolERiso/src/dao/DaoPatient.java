@@ -70,7 +70,7 @@ public class DaoPatient {
         }
     }
     
-        public void remove(Patient patient) throws DaoException {
+    public void remove(Patient patient) throws DaoException {
         try {
             this.connection = SQLConnection.getConnectionInstance();
             this.statement = connection.prepareStatement(SQLQueries.Patient.REGISTER); 
@@ -86,4 +86,26 @@ public class DaoPatient {
             throw new DaoException("PROBLEMA AO DELETAR Paciente - Contate o ADM");
         }
     }
+    
+    public void update(Patient patient, int Id) throws DaoException {
+        try {
+            this.connection = SQLConnection.getConnectionInstance();
+            this.statement = connection.prepareStatement(SQLQueries.Patient.REGISTER); 
+            
+            this.statement.setInt(1, patient.getId());
+            this.statement.setString(2, patient.getName());
+            this.statement.setString(3, patient.getCpf());
+            this.statement.setString(4, patient.getPhoneNumber());
+            this.statement.setInt(5, patient.getAddressId());
+            
+            result = this.statement.executeQuery();
+           
+            this.connection.close();
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            throw new DaoException("PROBLEMA AO ATUALIZAR Paciente - Contate o ADM");
+        }
+    }
+    
 }
