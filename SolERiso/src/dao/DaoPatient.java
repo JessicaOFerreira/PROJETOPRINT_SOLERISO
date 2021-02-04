@@ -73,7 +73,7 @@ public class DaoPatient {
     public void remove(Patient patient) throws DaoException {
         try {
             this.connection = SQLConnection.getConnectionInstance();
-            this.statement = connection.prepareStatement(SQLQueries.Patient.REGISTER); 
+            this.statement = connection.prepareStatement(SQLQueries.Patient.REMOVE); 
             
             this.statement.setInt(1, patient.getId());
             
@@ -90,7 +90,7 @@ public class DaoPatient {
     public void update(Patient patient, int Id) throws DaoException {
         try {
             this.connection = SQLConnection.getConnectionInstance();
-            this.statement = connection.prepareStatement(SQLQueries.Patient.REGISTER); 
+            this.statement = connection.prepareStatement(SQLQueries.Patient.UPDATE); 
             
             this.statement.setInt(1, patient.getId());
             this.statement.setString(2, patient.getName());
