@@ -26,7 +26,7 @@ public class DaoScheduling {
     public void register(Scheduling scheduling) throws DaoException {
         try {
             this.connection = SQLConnection.getConnectionInstance();
-            this.statement = connection.prepareStatement(SQLQueries.Patient.REGISTER); 
+            this.statement = connection.prepareStatement(SQLQueries.Scheduling.REGISTER); 
             
             this.statement.setString(1, scheduling.getReport());
             this.statement.setTime(2, scheduling.getHour());
@@ -42,14 +42,14 @@ public class DaoScheduling {
             
         } catch (Exception ex) {
             ex.printStackTrace();
-            throw new DaoException("PROBLEMA AO SALVAR Paciente - Contate o ADM");
+            throw new DaoException("PROBLEMA AO SALVAR Agendamento - Contate o ADM");
         }
     }
     
     public void remove(Scheduling scheduling) throws DaoException {
         try {
             this.connection = SQLConnection.getConnectionInstance();
-            this.statement = connection.prepareStatement(SQLQueries.Patient.REGISTER); 
+            this.statement = connection.prepareStatement(SQLQueries.Scheduling.REMOVE); 
             
             this.statement.setInt(1, scheduling.getId());
             
@@ -59,14 +59,14 @@ public class DaoScheduling {
             
         } catch (Exception ex) {
             ex.printStackTrace();
-            throw new DaoException("PROBLEMA AO DELETAR Paciente - Contate o ADM");
+            throw new DaoException("PROBLEMA AO DELETAR Agendamento - Contate o ADM");
         }
     }
     
     public void update(Scheduling scheduling) throws DaoException {
         try {
             this.connection = SQLConnection.getConnectionInstance();
-            this.statement = connection.prepareStatement(SQLQueries.Patient.REGISTER); 
+            this.statement = connection.prepareStatement(SQLQueries.Scheduling.UPDATE); 
             
             this.statement.setInt(1, scheduling.getId());
             this.statement.setString(2, scheduling.getReport());
@@ -83,7 +83,7 @@ public class DaoScheduling {
             
         } catch (Exception ex) {
             ex.printStackTrace();
-            throw new DaoException("PROBLEMA AO SALVAR Paciente - Contate o ADM");
+            throw new DaoException("PROBLEMA AO SALVAR Agendamento - Contate o ADM");
         }
     }
 }
