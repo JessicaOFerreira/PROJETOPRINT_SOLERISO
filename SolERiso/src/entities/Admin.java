@@ -14,6 +14,10 @@ public class Admin {
     private String password;
     private Boolean isDentist;
 
+    public String getId() {
+        return login;
+    }
+    
     public String getLogin() {
         return login;
     }

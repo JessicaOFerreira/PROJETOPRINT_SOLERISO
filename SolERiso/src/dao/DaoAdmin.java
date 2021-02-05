@@ -73,6 +73,27 @@ public class DaoAdmin implements IDaoAdmin {
             throw new DaoException("PROBLEMA AO SALVAR Dentista - Contate o ADM");
         }
     }
+    
+    public void changePassword(Admin admin, String newPassword, int idToChange) throws DaoException {
+        try {
+            this.connection = SQLConnection.getConnectionInstance();
+            this.statement = connection.prepareStatement(SQLQueries.Admin.CHANGEPASSWORD); 
+            
+            this.statement.setString(1, newPassword);
+            this.statement.setInt(2, idToChange);
+            
+            if(admin.getIsDentist()){
+                result = this.statement.executeQuery();
+            }
+            
+            this.connection.close();
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            throw new DaoException("PROBLEMA AO MUDAR SENHA DO Dentista - Contate o ADM");
+        }
+    }
+    
 
     @Override
     public Admin register(String login, String password_admin, boolean dentist) throws DaoException {
