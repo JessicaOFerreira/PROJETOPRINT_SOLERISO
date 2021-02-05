@@ -92,11 +92,11 @@ public class DaoPatient {
             this.connection = SQLConnection.getConnectionInstance();
             this.statement = connection.prepareStatement(SQLQueries.Patient.UPDATE); 
             
-            this.statement.setInt(1, patient.getId());
-            this.statement.setString(2, patient.getName());
-            this.statement.setString(3, patient.getCpf());
-            this.statement.setString(4, patient.getPhoneNumber());
-            this.statement.setInt(5, patient.getAddressId());
+            this.statement.setString(1, patient.getName());
+            this.statement.setString(2, patient.getCpf());
+            this.statement.setString(3, patient.getPhoneNumber());
+            this.statement.setInt(4, patient.getAddressId());
+            this.statement.setInt(5, patient.getId());
             
             result = this.statement.executeQuery();
            

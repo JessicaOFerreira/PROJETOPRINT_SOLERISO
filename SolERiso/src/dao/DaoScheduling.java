@@ -67,15 +67,16 @@ public class DaoScheduling {
         try {
             this.connection = SQLConnection.getConnectionInstance();
             this.statement = connection.prepareStatement(SQLQueries.Scheduling.UPDATE); 
+
+            this.statement.setString(1, scheduling.getReport());
+            this.statement.setTime(2, scheduling.getHour());
+            this.statement.setDate(3, (Date) scheduling.getDate_scheduling());
+            this.statement.setFloat(4, scheduling.getPrice());
+            this.statement.setInt(5, scheduling.getAdmin_id());
+            this.statement.setInt(6, scheduling.getPatient_id());
+            this.statement.setInt(7, scheduling.getOperation_id());
+            this.statement.setInt(8, scheduling.getId());
             
-            this.statement.setInt(1, scheduling.getId());
-            this.statement.setString(2, scheduling.getReport());
-            this.statement.setTime(3, scheduling.getHour());
-            this.statement.setDate(4, (Date) scheduling.getDate_scheduling());
-            this.statement.setFloat(5, scheduling.getPrice());
-            this.statement.setInt(6, scheduling.getAdmin_id());
-            this.statement.setInt(7, scheduling.getPatient_id());
-            this.statement.setInt(8, scheduling.getOperation_id());
             
             result = this.statement.executeQuery();
            

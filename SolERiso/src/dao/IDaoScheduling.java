@@ -25,12 +25,12 @@ public interface IDaoScheduling {
     
     public Scheduling remove(int scheduling) throws DaoException;
     
-    public Scheduling update(  int id,
-                               String report, 
+    public Scheduling update(  String report, 
                                Time hour, 
                                Date date_scheduling, 
                                float price, 
                                int admin_id, 
                                int patient_id, 
-                               int operation_id) throws DaoException;
+                               int operation_id,
+                               int id) throws DaoException;
 }
