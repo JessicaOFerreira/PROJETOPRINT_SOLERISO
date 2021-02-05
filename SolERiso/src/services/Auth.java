@@ -10,7 +10,7 @@ package services;
  * @author johnn
  */
 public class Auth {
-    private Boolean isAuth;
+    private static Boolean isAuth;
 
     public Boolean getIsAuth() {
         return isAuth;

@@ -15,8 +15,7 @@ public class SQLQueries {
     
     public static class Admin {
         public static final String LOGIN =     "SELECT * FROM admin WHERE login = ? AND admin_password = ?";
-        public static final String REGISTER =  "INSERT INTO admin (login, admin_password , dentist)"
-                                             + " VALUES (?,?,?)";
+        public static final String REGISTER =  "INSERT INTO admin (login, admin_password , dentist) VALUES (?,?,?)";
         public static String CHANGEPASSWORD =  "UPDATE admin"
                                              + "SET admin_password = ?"
                                              + "WHERE admin_id = ?";

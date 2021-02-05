@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author johnn
+ * @author johnny
  */
 public class Navigation {
     

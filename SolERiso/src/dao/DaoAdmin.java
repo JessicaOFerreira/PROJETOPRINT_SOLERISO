@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import services.Auth;
 import sql.SQLConnection;
 import sql.SQLQueries;
 
@@ -34,14 +35,18 @@ public class DaoAdmin implements IDaoAdmin {
             result = this.statement.executeQuery();
             
             Admin admin = null;
+            Auth authenticated = new Auth();
             
             if (result.next()) {
                 admin = new Admin();
                 
                 admin.setLogin(result.getString("login"));
                 admin.setIsDentist(result.getBoolean("dentist"));
+                
+                authenticated.setIsAuth(true);
             } else {
                 // No data
+                authenticated.setIsAuth(false);
                 this.connection.close();
                 return null;
             }
@@ -55,26 +60,31 @@ public class DaoAdmin implements IDaoAdmin {
         }
     }
     
-    public void register(Admin admin) throws DaoException {
+    @Override
+    public Admin register(String login, String password, boolean dentist) throws DaoException {
         try {
             this.connection = SQLConnection.getConnectionInstance();
-            this.statement = connection.prepareStatement(SQLQueries.Admin.REGISTER); 
+            this.statement = connection.prepareStatement(SQLQueries.Admin.REGISTER);
             
-            this.statement.setString(1, admin.getLogin());
-            this.statement.setString(2, admin.getPassword());
-            this.statement.setBoolean(3, admin.getIsDentist());
+            System.out.println("Passou por aqui!");
             
-            result = this.statement.executeQuery();
+            this.statement.setString(1, login);
+            this.statement.setString(2, password);
+            this.statement.setBoolean(3, dentist);
+            
+            this.statement.executeUpdate();
            
             this.connection.close();
             
+            return null;
         } catch (Exception ex) {
             ex.printStackTrace();
             throw new DaoException("PROBLEMA AO SALVAR Dentista - Contate o ADM");
         }
     }
     
-    public void changePassword(Admin admin, String newPassword, int idToChange) throws DaoException {
+    @Override
+    public Admin changePassword(Admin admin, String newPassword, int idToChange) throws DaoException {
         try {
             this.connection = SQLConnection.getConnectionInstance();
             this.statement = connection.prepareStatement(SQLQueries.Admin.CHANGEPASSWORD); 
@@ -88,15 +98,10 @@ public class DaoAdmin implements IDaoAdmin {
             
             this.connection.close();
             
+            return null;
         } catch (Exception ex) {
             ex.printStackTrace();
             throw new DaoException("PROBLEMA AO MUDAR SENHA DO Dentista - Contate o ADM");
         }
-    }
-    
-
-    @Override
-    public Admin register(String login, String password_admin, boolean dentist) throws DaoException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
