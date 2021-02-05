@@ -15,22 +15,7 @@ import java.util.Date;
  * @author Nicolas
  */
 public interface IDaoScheduling {
-    public Scheduling register(String report, 
-                               Time hour, 
-                               Date date_scheduling, 
-                               float price, 
-                               int admin_id, 
-                               int patient_id, 
-                               int operation_id) throws DaoException;
-    
+    public Scheduling register(String report, Time hour, Date date_scheduling, float price, int admin_id, int patient_id, int operation_id) throws DaoException;
     public Scheduling remove(int scheduling) throws DaoException;
-    
-    public Scheduling update(  String report, 
-                               Time hour, 
-                               Date date_scheduling, 
-                               float price, 
-                               int admin_id, 
-                               int patient_id, 
-                               int operation_id,
-                               int id) throws DaoException;
+    public Scheduling update(String report, Time hour, Date date_scheduling, float price, int admin_id, int patient_id, int operation_id, int id) throws DaoException;
 }
