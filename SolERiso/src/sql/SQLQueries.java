@@ -34,7 +34,7 @@ public class SQLQueries {
         public static final String LISTBYNAME = "SELECT * FROM patient"
                                              + "WHERE name = ?";
         public static final String SHOWBYCPF = "SELECT * FROM patient"
-                                             + "WHERE name = ?";
+                                             + "WHERE cpf = ?";
     }
     public static class Scheduling {
         public static final String REGISTER =  "INSERT INTO scheduling (report, hour, date_scheduling, price, admin_id, patient_id, operation_id)"
