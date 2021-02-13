@@ -22,7 +22,7 @@ public class SQLQueries {
     }
     public static class Patient {
         public static final String REGISTER =  "INSERT INTO patient (name, cpf, phone_number, address_id)"
-                                             + " VALUES (?,?,?,?)";
+                                             + "VALUES (?,?,?,?)";
         public static final String LIST   =    "SELECT * FROM patient";
         public static final String REMOVE =    "DELETE FROM patient WHERE patient_id = ?";
         public static final String UPDATE =    "UPDATE patient"
@@ -31,10 +31,12 @@ public class SQLQueries {
                                              + ", phone_number = ?"
                                              + ", address_id = ?"
                                              + "WHERE patient_id = ?";
+        public static final String LISTBYNAME = "SELECT * FROM patient"
+                                             + "WHERE name = ?";
     }
     public static class Scheduling {
         public static final String REGISTER =  "INSERT INTO scheduling (report, hour, date_scheduling, price, admin_id, patient_id, operation_id)"
-                                             + " VALUES (?,?,?,?,?,?,?)";
+                                             + "VALUES (?,?,?,?,?,?,?)";
         public static final String LIST   =    "SELECT * FROM scheduling";
         public static final String REMOVE =    "DELETE FROM scheduling WHERE scheduling_id = ?";
         public static final String UPDATE =    "UPDATE scheduling"
@@ -51,7 +53,7 @@ public class SQLQueries {
     
     public static class Operation {
        public static final String REGISTER =  "INSERT INTO operation (name, description)"
-                                            + " VALUES (?,?)";
+                                            + "VALUES (?,?)";
        public static final String LIST =      "SELECT * FROM operation";
        public static final String UPDATE =    "UPDATE operation"
                                             + "SET name = ?"
