@@ -65,8 +65,13 @@ public class SQLQueries {
                                             + "SET active = 0"
                                             + "WHERE operation_id = ?";
        
-       public static final String SHOWBYID =      "SELECT * FROM operation "
+       public static final String SHOWBYID =  "SELECT * FROM operation "
                                             + "WHERE operation_id = ?";
     }
  
+    public static class Address {
+       public static final String SHOWBYPATIENTID =  "SELECT * FROM address "
+                                                    + "WHERE patient_id = ?";
+    }
+    
 }
