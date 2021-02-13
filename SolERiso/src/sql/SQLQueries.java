@@ -53,6 +53,10 @@ public class SQLQueries {
         public static final String REGISTER = "INSERT INTO operation (name, description)"
                                              + " VALUES (?,?)";
         public static String LIST = "SELECT * FROM operation";
+        public static String UPDATE = "UPDATE operation"
+                                             + "SET name = ?"
+                                             + ", description = ?"
+                                             + "WHERE operation_id = ?";;
      }
  
 }

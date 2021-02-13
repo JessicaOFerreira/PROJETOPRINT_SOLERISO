@@ -68,4 +68,23 @@ public class DaoOperation {
         }
     }
     
+    public void update(Operation operation) throws DaoException {
+        try {
+            this.connection = SQLConnection.getConnectionInstance();
+            this.statement = connection.prepareStatement(SQLQueries.Operation.UPDATE); 
+            
+            this.statement.setString(1, operation.getName());
+            this.statement.setString(2, operation.getDesciption());
+            this.statement.setInt(3, operation.getId());
+            
+            result = this.statement.executeQuery();
+           
+            this.connection.close();
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            throw new DaoException("PROBLEMA AO ATUALIZAR Procedimento - Contate o ADM");
+        }
+    }
+    
 }
