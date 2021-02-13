@@ -49,15 +49,16 @@ public class SQLQueries {
         
     }
     
-     public static class Operation {
-        public static final String REGISTER = "INSERT INTO operation (name, description)"
-                                             + " VALUES (?,?)";
-        public static String LIST = "SELECT * FROM operation";
-        public static String UPDATE = "UPDATE operation"
-                                             + "SET name = ?"
-                                             + ", description = ?"
-                                             + "WHERE operation_id = ?";
-        public static String REMOVE = "DELETE FROM operation WHERE operation_id = ?";
-     }
+    public static class Operation {
+       public static final String REGISTER = "INSERT INTO operation (name, description)"
+                                            + " VALUES (?,?)";
+       public static final String LIST = "SELECT * FROM operation";
+       public static final String UPDATE = "UPDATE operation"
+                                            + "SET name = ?"
+                                            + ", description = ?"
+                                            + "WHERE operation_id = ?";
+       public static final String REMOVE = "DELETE FROM operation WHERE operation_id = ?";
+       
+    }
  
 }
