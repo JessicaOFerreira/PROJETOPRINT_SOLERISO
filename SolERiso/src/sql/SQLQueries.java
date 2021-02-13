@@ -61,7 +61,9 @@ public class SQLQueries {
                                             + "SET name = ?"
                                             + ", description = ?"
                                             + "WHERE operation_id = ?";
-       public static final String REMOVE =    "DELETE FROM operation WHERE operation_id = ?";
+       public static final String REMOVE =    "UPDATE operation"
+                                            + "SET active = 1"
+                                            + "WHERE operation_id = ?";
        
        public static final String SHOWBYID =      "SELECT * FROM operation "
                                             + "WHERE operation_id = ?";
