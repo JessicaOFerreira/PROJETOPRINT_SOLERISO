@@ -62,7 +62,7 @@ public class SQLQueries {
                                             + ", description = ?"
                                             + "WHERE operation_id = ?";
        public static final String REMOVE =    "UPDATE operation"
-                                            + "SET active = 1"
+                                            + "SET active = 0"
                                             + "WHERE operation_id = ?";
        
        public static final String SHOWBYID =      "SELECT * FROM operation "
