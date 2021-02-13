@@ -42,4 +42,30 @@ public class DaoOperation {
             throw new DaoException("PROBLEMA AO SALVAR Procedimento - Contate o ADM");
         }
     }
+    
+    public List<Operation> getContatos() throws DaoException {
+        try{
+            this.connection = SQLConnection.getConnectionInstance();
+            this.statement = connection.prepareStatement(SQLQueries.Operation.LIST);
+           
+            result = this.statement.executeQuery();
+            
+            List<Operation> Operations = new ArrayList<>();
+            
+            Operation operation;
+            
+            while (result.next()) {
+                operation = new Operation();
+                Operations.add(operation);
+            }
+            this.connection.close();
+
+            return Operations;
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            throw new DaoException("PROBLEMA AO LISTAR Procedimentos - Contate o ADM");
+        }
+    }
+    
 }

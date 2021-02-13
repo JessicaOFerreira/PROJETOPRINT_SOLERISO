@@ -50,8 +50,9 @@ public class SQLQueries {
     }
     
      public static class Operation {
-         public static final String REGISTER = "INSERT INTO operation (name, description)"
+        public static final String REGISTER = "INSERT INTO operation (name, description)"
                                              + " VALUES (?,?)";
+        public static String LIST = "SELECT * FROM operation";
      }
  
 }

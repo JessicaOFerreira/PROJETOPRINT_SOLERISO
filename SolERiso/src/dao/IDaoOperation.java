@@ -14,4 +14,5 @@ import exceptions.DaoException;
  */
 public interface IDaoOperation {
     public Operation register(String name, String description) throws DaoException;
+    public Operation list() throws DaoException;
 }
