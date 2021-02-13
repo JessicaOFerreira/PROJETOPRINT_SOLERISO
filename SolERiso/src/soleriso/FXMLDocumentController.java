@@ -16,10 +16,10 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.RadioButton;
 import services.Auth;
+import utils.Loading;
 import utils.Navigation;
 
 /**
@@ -27,8 +27,6 @@ import utils.Navigation;
  * @author johnn
  */
 public class FXMLDocumentController implements Initializable {
-    @FXML
-    private CheckBox isDentistCheck;
 
     @FXML
     private Button loginButton;
@@ -40,16 +38,20 @@ public class FXMLDocumentController implements Initializable {
     private PasswordField passwordField;
     
     @FXML
+    private Label authFailureMessage;
+    
+    @FXML
     void goToRegisterScreen(ActionEvent event) throws IOException {
         URL url = getClass().getResource("/screens/FXMLRegister.fxml");
         Navigation.goToScreen(event, url, "Cadastre-se", true);
     }
     
     @FXML
-    void login(ActionEvent event) throws IOException, DaoException {
+    void login(ActionEvent event) throws IOException, DaoException, Exception {
+        Loading.show();
+        
         String user = userField.getText();
         String password = passwordField.getText();
-        Boolean isDentist = isDentistCheck.isSelected();
         
         DaoAdmin daoAdmin = new DaoAdmin();
         
@@ -62,7 +64,8 @@ public class FXMLDocumentController implements Initializable {
             URL url = getClass().getResource("/screens/FXMLDashboard.fxml");
             Navigation.goToScreen(event, url, "Dashboard", true);
         } else {
-            System.out.println("Usuário e senha incorreto");
+            authFailureMessage.setVisible(true);
+            Loading.close();
         }
     }
     
