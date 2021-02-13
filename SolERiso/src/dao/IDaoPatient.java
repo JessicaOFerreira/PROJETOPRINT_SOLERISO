@@ -17,4 +17,6 @@ public interface IDaoPatient {
     public Patient list() throws DaoException;
     public Patient remove(int patient_id) throws DaoException;
     public Patient update(String name, String cpf, String phone_number, int address_id, int patient_id) throws DaoException;
+    public Patient list_by_name(String name) throws DaoException;
+    public Patient show_by_cpf(String cpf) throws DaoException;
 }

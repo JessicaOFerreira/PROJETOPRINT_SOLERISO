@@ -107,7 +107,7 @@ public class DaoOperation {
     public Operation show_by_id(int id) throws DaoException {
         try {
             this.connection = SQLConnection.getConnectionInstance();
-            this.statement = connection.prepareStatement(SQLQueries.Operation.SHOW); 
+            this.statement = connection.prepareStatement(SQLQueries.Operation.SHOWBYID); 
             
             this.statement.setInt(1, id);
 
