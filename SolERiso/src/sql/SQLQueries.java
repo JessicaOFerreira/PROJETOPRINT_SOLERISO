@@ -59,6 +59,8 @@ public class SQLQueries {
                                             + "WHERE operation_id = ?";
        public static final String REMOVE = "DELETE FROM operation WHERE operation_id = ?";
        
+       public static final String SHOW = "SELECT * FROM operation "
+                                            + "WHERE operation_id = ?";
     }
  
 }

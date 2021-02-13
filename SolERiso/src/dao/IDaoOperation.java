@@ -17,4 +17,5 @@ public interface IDaoOperation {
     public Operation list() throws DaoException;
     public Operation update(String name, String description, int operation_id) throws DaoException;
     public Operation remove(int operation_id) throws DaoException;
+    public Operation show(int operation_id) throws DaoException;
 }
