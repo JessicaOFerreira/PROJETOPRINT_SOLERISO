@@ -104,4 +104,34 @@ public class DaoOperation {
         }
     }
     
+    public Operation show_by_id(int id) throws DaoException {
+        try {
+            this.connection = SQLConnection.getConnectionInstance();
+            this.statement = connection.prepareStatement(SQLQueries.Operation.SHOWBYID); 
+            
+            this.statement.setInt(1, id);
+
+            result = this.statement.executeQuery();
+            
+            Operation operation = new Operation();
+            
+            if(result.next()){
+                operation.setId(result.getInt(1));
+                operation.setName(result.getString(2));
+                operation.setDescription(result.getString(3));
+                operation.setActive(result.getInt(4));
+            }else{
+                throw new DaoException("ALUNO NÃO EXISTE");
+            }
+
+            this.connection.close();
+            
+            return operation;
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            throw new DaoException("PROBLEMA AO PROCURAR Procedimento - Contate o ADM");
+        }
+    }
+    
 }

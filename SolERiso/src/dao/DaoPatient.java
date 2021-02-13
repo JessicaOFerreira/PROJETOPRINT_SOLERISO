@@ -45,7 +45,7 @@ public class DaoPatient {
         }
     }
     
-    public List<Patient> getContatos() throws DaoException {
+    public List<Patient> list() throws DaoException {
         try{
             this.connection = SQLConnection.getConnectionInstance();
             this.statement = connection.prepareStatement(SQLQueries.Patient.LIST);
@@ -105,6 +105,64 @@ public class DaoPatient {
         } catch (Exception ex) {
             ex.printStackTrace();
             throw new DaoException("PROBLEMA AO ATUALIZAR Paciente - Contate o ADM");
+        }
+    }
+    
+    public List<Patient> list_by_name(String name) throws DaoException {
+        try{
+            this.connection = SQLConnection.getConnectionInstance();
+            this.statement = connection.prepareStatement(SQLQueries.Patient.LISTBYNAME);
+           
+            this.statement.setString(1, name);
+            
+            result = this.statement.executeQuery();
+            
+            List<Patient> patients = new ArrayList<>();
+            
+            Patient patient;
+            
+            while (result.next()) {
+                patient = new Patient();
+                patients.add(patient);
+            }
+            this.connection.close();
+
+            return patients;
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            throw new DaoException("PROBLEMA AO LISTAR Pacientes - Contate o ADM");
+        }
+    }
+    
+        public Patient show_by_cpf(int cpf) throws DaoException {
+        try {
+            this.connection = SQLConnection.getConnectionInstance();
+            this.statement = connection.prepareStatement(SQLQueries.Patient.SHOWBYCPF); 
+            
+            this.statement.setInt(1, cpf);
+
+            result = this.statement.executeQuery();
+            
+            Patient patient = new Patient();
+            
+            if(result.next()){
+                patient.setId(result.getInt(1));
+                patient.setName(result.getString(2));
+                patient.setCpf(result.getString(4));
+                patient.setPhoneNumber(result.getString(5));
+                patient.setAddressId(result.getInt(6));
+            }else{
+                throw new DaoException("PACIENTE NÃO EXISTE");
+            }
+
+            this.connection.close();
+            
+            return patient;
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            throw new DaoException("PROBLEMA AO PROCURAR Paciente - Contate o ADM");
         }
     }
     
