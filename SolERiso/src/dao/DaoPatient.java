@@ -135,4 +135,35 @@ public class DaoPatient {
         }
     }
     
+        public Patient show_by_cpf(int cpf) throws DaoException {
+        try {
+            this.connection = SQLConnection.getConnectionInstance();
+            this.statement = connection.prepareStatement(SQLQueries.Patient.SHOWBYCPF); 
+            
+            this.statement.setInt(1, cpf);
+
+            result = this.statement.executeQuery();
+            
+            Patient patient = new Patient();
+            
+            if(result.next()){
+                patient.setId(result.getInt(1));
+                patient.setName(result.getString(2));
+                patient.setCpf(result.getString(4));
+                patient.setPhoneNumber(result.getString(5));
+                patient.setAddressId(result.getInt(6));
+            }else{
+                throw new DaoException("PACIENTE NÃO EXISTE");
+            }
+
+            this.connection.close();
+            
+            return patient;
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            throw new DaoException("PROBLEMA AO PROCURAR Paciente - Contate o ADM");
+        }
+    }
+    
 }
