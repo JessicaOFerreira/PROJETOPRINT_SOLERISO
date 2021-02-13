@@ -87,4 +87,21 @@ public class DaoOperation {
         }
     }
     
+    public void remove(int id) throws DaoException {
+        try {
+            this.connection = SQLConnection.getConnectionInstance();
+            this.statement = connection.prepareStatement(SQLQueries.Operation.REMOVE); 
+            
+            this.statement.setInt(1, id);
+
+            result = this.statement.executeQuery();
+           
+            this.connection.close();
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            throw new DaoException("PROBLEMA AO APAGAR Procedimento - Contate o ADM");
+        }
+    }
+    
 }

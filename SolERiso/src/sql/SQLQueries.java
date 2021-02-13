@@ -56,7 +56,8 @@ public class SQLQueries {
         public static String UPDATE = "UPDATE operation"
                                              + "SET name = ?"
                                              + ", description = ?"
-                                             + "WHERE operation_id = ?";;
+                                             + "WHERE operation_id = ?";
+        public static String REMOVE = "DELETE FROM operation WHERE operation_id = ?";
      }
  
 }
