@@ -63,6 +63,7 @@ public class FXMLDocumentController implements Initializable {
         if (isAuth) {
             URL url = getClass().getResource("/screens/FXMLDashboard.fxml");
             Navigation.goToScreen(event, url, "Dashboard", true);
+            Loading.close();
         } else {
             authFailureMessage.setVisible(true);
             Loading.close();

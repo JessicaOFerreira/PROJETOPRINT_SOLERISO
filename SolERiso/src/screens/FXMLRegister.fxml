@@ -16,17 +16,17 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FXMLRegisterController">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(white, white, skyblue);">
          <children>
-            <Label layoutX="231.0" layoutY="100.0" text="Cadastrar Usuário">
+            <Label layoutX="220.0" layoutY="82.0" text="Cadastrar Usuário">
                <font>
                   <Font name="Corbel" size="27.0" />
                </font>
             </Label>
-            <TextField id="new_admin_login" layoutX="247.0" layoutY="158.0" prefHeight="25.0" prefWidth="235.0" promptText="Digite o nome do usuario" style="-fx-background-color: transparent; -fx-border-color: #0b97b0; -fx-border-width: 0 0 1 0;" />
-            <PasswordField id="new_admin_pass" layoutX="247.0" layoutY="204.0" prefHeight="25.0" prefWidth="235.0" promptText="Digite a senha" style="-fx-background-color: transparent; -fx-border-color: #0b97b0; -fx-border-width: 0 0 1 0;" />
+            <TextField id="new_admin_login" fx:id="usernameField" layoutX="247.0" layoutY="158.0" prefHeight="25.0" prefWidth="235.0" promptText="Digite o nome do usuario" style="-fx-background-color: transparent; -fx-border-color: #0b97b0; -fx-border-width: 0 0 1 0;" />
+            <PasswordField id="new_admin_pass" fx:id="passwordField" layoutX="247.0" layoutY="204.0" prefHeight="25.0" prefWidth="235.0" promptText="Digite a senha" style="-fx-background-color: transparent; -fx-border-color: #0b97b0; -fx-border-width: 0 0 1 0;" />
             <Label layoutX="185.0" layoutY="166.0" text="USUÁRIO:" textFill="#69686b">
                <font>
                   <Font name="Corbel" size="13.0" />
@@ -37,41 +37,34 @@
                   <Font name="Corbel" size="13.0" />
                </font>
             </Label>
-            <PasswordField id="repeat_pass" layoutX="247.0" layoutY="244.0" prefHeight="25.0" prefWidth="235.0" promptText="Confirme a senha" style="-fx-background-color: transparent; -fx-border-color: #0b97b0; -fx-border-width: 0 0 1 0;" />
+            <PasswordField id="repeat_pass" fx:id="confirmPasswordField" layoutX="247.0" layoutY="244.0" prefHeight="25.0" prefWidth="235.0" promptText="Confirme a senha" style="-fx-background-color: transparent; -fx-border-color: #0b97b0; -fx-border-width: 0 0 1 0;" />
             <Label layoutX="129.0" layoutY="249.0" prefHeight="17.0" prefWidth="113.0" text="CONFIRMA SENHA:" textFill="#69686b">
                <font>
                   <Font name="Corbel" size="13.0" />
                </font>
             </Label>
-            <RadioButton id="activate_dentist" layoutX="247.0" layoutY="296.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="68.0" text="Dentista">
-               <font>
-                  <Font name="Segoe UI Light" size="12.0" />
-               </font></RadioButton>
-            <Button id="btn_back" layoutX="14.0" layoutY="27.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="68.0" style="-fx-background-color: #d1d1d1; -fx-background-radius: 10px;" text="VOLTAR" textFill="#69686b">
+            <Button id="btn_back" fx:id="backToLoginButton" layoutX="14.0" layoutY="27.0" mnemonicParsing="false" onAction="#backToLogin" prefHeight="28.0" prefWidth="68.0" style="-fx-background-color: #d1d1d1; -fx-background-radius: 10px;" text="VOLTAR" textFill="#69686b">
                <font>
                   <Font name="Segoe UI Light" size="12.0" />
                </font>
             </Button>
-            <Button id="btn_register" layoutX="383.0" layoutY="349.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="106.0" style="-fx-background-color: #18d975; -fx-background-radius: 10; -fx-border-width: 0 0 0 0;" text="CADASTRAR" textFill="#69686b">
+            <Button id="btn_register" fx:id="registerButton" layoutX="383.0" layoutY="349.0" mnemonicParsing="false" onAction="#register" prefHeight="28.0" prefWidth="106.0" style="-fx-background-color: #18d975; -fx-background-radius: 10; -fx-border-width: 0 0 0 0;" text="CADASTRAR" textFill="#69686b">
                <font>
                   <Font name="Corbel" size="15.0" />
                </font>
             </Button>
-            <Button id="btn_cancel" layoutX="214.0" layoutY="349.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="97.0" style="-fx-background-radius: 10px; -fx-background-color: salmon; -fx-border-width: 0 0 0 0;" text="CANCELAR" textFill="#69686b">
+            <Button id="btn_cancel" fx:id="cancelRegisterButton" layoutX="214.0" layoutY="349.0" mnemonicParsing="false" onAction="#backToLogin" prefHeight="28.0" prefWidth="97.0" style="-fx-background-radius: 10px; -fx-background-color: salmon; -fx-border-width: 0 0 0 0;" text="CANCELAR" textFill="#69686b">
                <font>
                   <Font name="Corbel" size="15.0" />
                </font>
             </Button>
-            <RadioButton id="activate_dentist" layoutX="402.0" layoutY="296.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="80.0" text="Atendente">
-               <font>
-                  <Font name="Segoe UI Light" size="12.0" />
-               </font>
-            </RadioButton>
-            <ImageView fitHeight="87.0" fitWidth="200.0" layoutX="236.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="63.0" fitWidth="46.0" layoutX="297.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/logo_sol&amp;riso.png" />
                </image>
             </ImageView>
+            <CheckBox fx:id="isDentist" layoutX="247.0" layoutY="292.0" mnemonicParsing="false" text="Dentista" />
+            <Label fx:id="fieldErrorMessage" layoutX="207.0" layoutY="126.0" prefHeight="17.0" prefWidth="235.0" textAlignment="CENTER" textFill="#e12828" visible="false" />
          </children>
     </AnchorPane>
   </children>
