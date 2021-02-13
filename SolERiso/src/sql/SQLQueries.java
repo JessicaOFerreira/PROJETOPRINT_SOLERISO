@@ -49,4 +49,9 @@ public class SQLQueries {
         
     }
     
+     public static class Operation {
+         public static final String REGISTER = "INSERT INTO operation (name, description)"
+                                             + " VALUES (?,?)";
+     }
+ 
 }
