@@ -11,9 +11,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import services.Auth;
 import sql.SQLConnection;
 import sql.SQLQueries;
+import utils.ErrorMessage;
 
 /**
  *
@@ -23,6 +26,32 @@ public class DaoAdmin implements IDaoAdmin {
     private Connection connection;
     private PreparedStatement statement;
     private ResultSet result;
+    
+    public List<Admin> list() throws DaoException {
+        try{
+            this.connection = SQLConnection.getConnectionInstance();
+            this.statement = connection.prepareStatement(SQLQueries.Admin.LIST);
+           
+            result = this.statement.executeQuery();
+            
+            List<Admin> admins = new ArrayList<>();
+            
+            Admin admin;
+            
+            while (result.next()) {
+                admin = new Admin();
+                admin.setLogin(result.getString("login"));
+                admins.add(admin);
+            }
+            this.connection.close();
+
+            return admins;
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            throw new DaoException("PROBLEMA AO LISTAR administradores - Contate o suporte");
+        }
+    }
 
     @Override
     public Admin login(String login, String password) throws DaoException {
@@ -62,24 +91,54 @@ public class DaoAdmin implements IDaoAdmin {
     
     @Override
     public Admin register(String login, String password, boolean dentist) throws DaoException {
+        List<Admin> admins = this.list();
+        
+        boolean userAlreadyExists = false;
+        for (int i = 0; i < admins.size(); i++) {
+            System.out.println(admins.get(i).getLogin());
+            
+            if (admins.get(i).getLogin() == null ? login == null : admins.get(i).getLogin().equals(login)) {
+                userAlreadyExists = true;
+                break;
+            }
+        }
+        
+        if (userAlreadyExists) {
+            ErrorMessage.setMessage("Este usuário já existe");
+            return null;
+        }
+        
         try {
             this.connection = SQLConnection.getConnectionInstance();
             this.statement = connection.prepareStatement(SQLQueries.Admin.REGISTER);
-            
-            System.out.println("Passou por aqui!");
             
             this.statement.setString(1, login);
             this.statement.setString(2, password);
             this.statement.setBoolean(3, dentist);
             
-            this.statement.executeUpdate();
-           
+            int totalRowsAffected = this.statement.executeUpdate();
+            
             this.connection.close();
             
-            return null;
+            Admin admin = null;
+            Auth authenticated = new Auth();
+            
+            if (totalRowsAffected == 1) {
+                admin = new Admin();
+                
+                admin.setLogin(login);
+                admin.setIsDentist(dentist);
+                
+                authenticated.setIsAuth(true);
+                
+                return admin;
+            } else {
+                ErrorMessage.setMessage("Erro ao realizar o cadastro. Tente novamente.");
+                return null;
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
-            throw new DaoException("PROBLEMA AO SALVAR Dentista - Contate o ADM");
+            throw new DaoException("PROBLEMA AO SALVAR Administrador - Contate o Suporte");
         }
     }
     

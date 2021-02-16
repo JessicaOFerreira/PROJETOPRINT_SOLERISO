@@ -17,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import services.Auth;
+import utils.ErrorMessage;
 import utils.Loading;
 import utils.Navigation;
 import utils.ValidateFields;
@@ -86,29 +87,33 @@ public class FXMLRegisterController {
         String username = usernameField.getText();
         String password = passwordField.getText();
         String confirmPassword = confirmPasswordField.getText();
+        boolean dentist = isDentist.isSelected();
         
         Boolean fieldsAreValid = validateFields(username, password, confirmPassword);
         
         if (fieldsAreValid) {
-            System.out.println("Passou na validação");
-//                DaoAdmin daoAdmin = new DaoAdmin();
-//        
-//                Admin response = daoAdmin.login(user, password);
-//
-//                Auth authenticated = new Auth();
-//                Boolean isAuth = authenticated.getIsAuth();
-//
-//                if (isAuth) {
-//                    URL url = getClass().getResource("/screens/FXMLDashboard.fxml");
-//                    Navigation.goToScreen(event, url, "Dashboard", true);
-//                    Loading.close();
-//                } else {
-//                    authFailureMessage.setVisible(true);
-//                    Loading.close();
-//                }
+                DaoAdmin daoAdmin = new DaoAdmin();
+        
+                Admin response = daoAdmin.register(username, password, dentist);
+
+                if (response == null) {
+                    fieldErrorMessage.setText(ErrorMessage.getMessage());
+                    fieldErrorMessage.setVisible(true);
+                    Loading.close();
+                } else {
+                    Auth authenticated = new Auth();
+                    Boolean isAuth = authenticated.getIsAuth();
+
+                    if (isAuth) {
+                        URL url = getClass().getResource("/screens/FXMLDashboard.fxml");
+                        Navigation.goToScreen(event, url, "Dashboard", true);
+                        Loading.close();
+                    } else {
+                        System.out.println("Ocorreu um erro inesperado ao fazer o cadastro!");
+                        Loading.close();
+                    }
+                }
         } else {
-            System.out.println("Erro nos campos");
-            
             fieldErrorMessage.setText(errorMessage);
             fieldErrorMessage.setVisible(true);
             Loading.close();
