@@ -8,7 +8,6 @@ package controllers;
 import dao.DaoAdmin;
 import entities.Admin;
 import java.io.IOException;
-import java.net.URL;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -17,9 +16,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import services.Auth;
+import services.Routes;
 import utils.ErrorMessage;
 import utils.Loading;
-import utils.Navigation;
 import utils.ValidateFields;
 
 /**
@@ -55,9 +54,8 @@ public class FXMLRegisterController {
     private Label fieldErrorMessage;
     
     @FXML
-    void backToLogin(ActionEvent event) throws IOException {
-        URL url = getClass().getResource("/soleriso/FXMLDocument.fxml");
-        Navigation.goToScreen(event, url, "Login", true);
+    void backToLogin(ActionEvent event) throws Exception {
+        Routes.render(event, "/login", true);
     }
     
     Boolean validateFields(String username, String password, String confirmPassword) {
@@ -105,8 +103,7 @@ public class FXMLRegisterController {
                     Boolean isAuth = authenticated.getIsAuth();
 
                     if (isAuth) {
-                        URL url = getClass().getResource("/screens/FXMLDashboard.fxml");
-                        Navigation.goToScreen(event, url, "Dashboard", true);
+                        Routes.render(event, "/dashboard", true);
                         Loading.close();
                     } else {
                         System.out.println("Ocorreu um erro inesperado ao fazer o cadastro!");

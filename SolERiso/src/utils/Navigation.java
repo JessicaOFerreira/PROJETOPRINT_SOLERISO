@@ -20,11 +20,11 @@ import javafx.stage.Stage;
  */
 public class Navigation {
     
-    private Navigation () {
-        // Singleton application
-    }
+    public Navigation () {}
     
-    public static void goToScreen(ActionEvent event, URL url, String screenTitle, Boolean closeOriginScreen) throws IOException {
+    public static void goToScreen(ActionEvent event, String destinationURL, String screenTitle, Boolean closeOriginScreen) throws IOException {
+        URL url = Navigation.class.getResource(destinationURL);
+        
         Parent root = FXMLLoader.load(url);
         
         Stage stage = new Stage();

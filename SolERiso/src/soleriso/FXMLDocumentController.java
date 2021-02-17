@@ -6,7 +6,6 @@
 package soleriso;
 
 import dao.DaoAdmin;
-import entities.Admin;
 import exceptions.DaoException;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -19,17 +18,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import services.Auth;
+import services.Routes;
 import utils.Loading;
-import utils.Navigation;
 
 /**
  *
  * @author johnn
  */
 public class FXMLDocumentController implements Initializable {
-
-    @FXML
-    private Button loginButton;
 
     @FXML
     private TextField userField;
@@ -41,9 +37,8 @@ public class FXMLDocumentController implements Initializable {
     private Label authFailureMessage;
     
     @FXML
-    void goToRegisterScreen(ActionEvent event) throws IOException {
-        URL url = getClass().getResource("/screens/FXMLRegister.fxml");
-        Navigation.goToScreen(event, url, "Cadastre-se", true);
+    void goToRegister(ActionEvent event) throws Exception {
+        Routes.render(event, "/register", true);
     }
     
     @FXML
@@ -55,14 +50,13 @@ public class FXMLDocumentController implements Initializable {
         
         DaoAdmin daoAdmin = new DaoAdmin();
         
-        Admin response = daoAdmin.login(user, password);
+        daoAdmin.login(user, password);
                 
         Auth authenticated = new Auth();
         Boolean isAuth = authenticated.getIsAuth();
        
         if (isAuth) {
-            URL url = getClass().getResource("/screens/FXMLDashboard.fxml");
-            Navigation.goToScreen(event, url, "Dashboard", true);
+            Routes.render(event, "/dashboard", true);
             Loading.close();
         } else {
             authFailureMessage.setVisible(true);

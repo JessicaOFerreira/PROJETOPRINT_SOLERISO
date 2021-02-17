@@ -95,8 +95,6 @@ public class DaoAdmin implements IDaoAdmin {
         
         boolean userAlreadyExists = false;
         for (int i = 0; i < admins.size(); i++) {
-            System.out.println(admins.get(i).getLogin());
-            
             if (admins.get(i).getLogin() == null ? login == null : admins.get(i).getLogin().equals(login)) {
                 userAlreadyExists = true;
                 break;
