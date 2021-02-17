@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import sql.SQLConnection;
 import sql.SQLQueries;
+import utils.ErrorMessage;
 
 /**
  *
@@ -24,26 +25,6 @@ public class DaoPatient {
     private Connection connection;
     private PreparedStatement statement;
     private ResultSet result;
-    
-    public void register(Patient patient) throws DaoException {
-        try {
-            this.connection = SQLConnection.getConnectionInstance();
-            this.statement = connection.prepareStatement(SQLQueries.Patient.REGISTER); 
-            
-            this.statement.setString(1, patient.getName());
-            this.statement.setString(2, patient.getCpf());
-            this.statement.setString(3, patient.getPhoneNumber());
-            this.statement.setInt(4, patient.getAddressId());
-            
-            result = this.statement.executeQuery();
-           
-            this.connection.close();
-            
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            throw new DaoException("PROBLEMA AO SALVAR Paciente - Contate o ADM");
-        }
-    }
     
     public List<Patient> list() throws DaoException {
         try{
@@ -67,6 +48,56 @@ public class DaoPatient {
         } catch (Exception ex) {
             ex.printStackTrace();
             throw new DaoException("PROBLEMA AO LISTAR Pacientes - Contate o ADM");
+        }
+    }
+    
+    public Patient register(String name, String cpf, String phone, int address) throws DaoException {
+        List<Patient> patients = this.list();
+        
+        boolean patientAlreadyExists = false;
+        for (int i = 0; i < patients.size(); i++) {
+            if (patients.get(i).getCpf()== null ? cpf == null : patients.get(i).getCpf().equals(cpf)) {
+                patientAlreadyExists = true;
+                break;
+            }
+        }
+        
+        if (patientAlreadyExists) {
+            ErrorMessage.setMessage("Este paciente já foi cadastrado");
+            return null;
+        }
+        
+        try {
+            this.connection = SQLConnection.getConnectionInstance();
+            this.statement = connection.prepareStatement(SQLQueries.Patient.REGISTER);
+            
+            this.statement.setString(1, name);
+            this.statement.setString(2, cpf);
+            this.statement.setString(3, phone);
+            this.statement.setInt(3, address);
+            
+            int totalRowsAffected = this.statement.executeUpdate();
+            
+            this.connection.close();
+            
+            Patient patient;
+            
+            if (totalRowsAffected == 1) {
+                patient = new Patient();
+                
+                patient.setName(name);
+                patient.setCpf(cpf);
+                patient.setPhoneNumber(phone);
+                patient.setAddressId(address);
+                
+                return patient;
+            } else {
+                ErrorMessage.setMessage("Erro ao realizar o cadastro do paciente. Tente novamente.");
+                return null;
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            throw new DaoException("PROBLEMA AO SALVAR Paciente - Contate o Suporte");
         }
     }
     

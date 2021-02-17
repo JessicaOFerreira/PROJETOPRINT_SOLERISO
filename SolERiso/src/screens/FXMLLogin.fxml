@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="soleriso.FXMLDocumentController">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FXMLLoginController">
   <children>
     <AnchorPane fx:id="authenticationFailureMessage" cache="true" maxHeight="-1.0" maxWidth="-1.0" opacity="0.6" prefHeight="423.0" prefWidth="640.0" style="-fx-background-color: linear-gradient(white, white,skyblue);" VBox.vgrow="ALWAYS">
       <children>

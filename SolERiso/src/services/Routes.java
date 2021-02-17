@@ -23,7 +23,7 @@ public class Routes {
         
         switch (route) {
             case "/login":
-                destinationURL = "/soleriso/FXMLDocument.fxml";
+                destinationURL = screensPath + "/FXMLLogin.fxml";
                 destinationScreenName = "Login";
             break;
             case "/register":
@@ -37,6 +37,10 @@ public class Routes {
             case "/patients":
                 destinationURL = screensPath + "/FXMLPatient.fxml";
                 destinationScreenName = "Pacientes";
+            break;
+            case "/patient-register":
+                destinationURL = screensPath + "/FXMLPatientRegister.fxml";
+                destinationScreenName = "Novo paciente";
             break;
             default:
                 throw new IllegalArgumentException("Página não encontrada");

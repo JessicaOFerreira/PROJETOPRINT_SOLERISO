@@ -22,8 +22,7 @@ public class SolERiso extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-        System.out.println("Passou aqui");
+        Parent root = FXMLLoader.load(getClass().getResource("/screens/FXMLLogin.fxml"));
         
         Scene scene = new Scene(root);
         

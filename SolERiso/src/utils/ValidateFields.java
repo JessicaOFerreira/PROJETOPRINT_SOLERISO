@@ -15,4 +15,8 @@ public class ValidateFields {
     public static Boolean passwordLength(String field) {
         return field.length() >= MINIMUM_PASSWORD_LENGTH;
     }
+    
+    public static Boolean isEmpty(String field) {
+        return field.length() == 0;
+    }
 }

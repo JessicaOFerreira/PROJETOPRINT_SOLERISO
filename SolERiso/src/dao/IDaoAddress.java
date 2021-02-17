@@ -12,6 +12,7 @@ import exceptions.DaoException;
  *
  * @author Nicolas
  */
-public interface IDaoAddress {
+public interface IDaoAddress {        
     public Address show_by_patient_id(int id) throws DaoException;
+    public Address register(String street, String houseNumber, String neighborhood, String city) throws DaoException;
 }

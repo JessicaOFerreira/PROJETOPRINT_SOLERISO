@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package soleriso;
+package controllers;
 
 import dao.DaoAdmin;
 import exceptions.DaoException;
@@ -25,7 +25,7 @@ import utils.Loading;
  *
  * @author johnn
  */
-public class FXMLDocumentController implements Initializable {
+public class FXMLLoginController implements Initializable {
 
     @FXML
     private TextField userField;

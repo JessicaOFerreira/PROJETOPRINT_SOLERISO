@@ -73,6 +73,8 @@ public class SQLQueries {
     public static class Address {
        public static final String SHOWBYPATIENTID =  "SELECT * FROM address "
                                                     + "WHERE patient_id = ?";
+       public static final String REGISTER = "INSERT INTO address (street, house_number, neighborhood, city)"
+                                            + "VALUES (?,?,?,?)";
     }
     
 }
