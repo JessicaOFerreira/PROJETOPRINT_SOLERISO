@@ -33,7 +33,7 @@ public class DaoOperation {
             this.statement.setString(1, operation.getName());
             this.statement.setString(2, operation.getDesciption());
             
-            result = this.statement.executeQuery();
+            result = this.statement.executeUpdate();
            
             this.connection.close();
             

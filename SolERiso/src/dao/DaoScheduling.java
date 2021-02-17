@@ -36,7 +36,7 @@ public class DaoScheduling {
             this.statement.setInt(6, scheduling.getPatient_id());
             this.statement.setInt(7, scheduling.getOperation_id());
             
-            result = this.statement.executeQuery();
+            result = this.statement.executeUpdate();
            
             this.connection.close();
             
