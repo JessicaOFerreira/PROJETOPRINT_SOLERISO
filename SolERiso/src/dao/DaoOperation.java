@@ -25,7 +25,7 @@ public class DaoOperation {
     private PreparedStatement statement;
     private ResultSet result;
     
-    public void check_operation(Scheduling scheduling) throws DaoException {
+    public void check_operation(Scheduling operation) throws DaoException {
         this.connection = SQLConnection.getConnectionInstance();
         this.statement = connection.prepareStatement(SQLQueries.Operation.VERIFYREGISTERED);
 
