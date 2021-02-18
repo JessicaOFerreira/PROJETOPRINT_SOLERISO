@@ -25,7 +25,7 @@ public class DaoScheduling {
     
 
 
-    public void checkSchedule(Scheduling scheduling) throws DaoException {
+    public void check_schedule(Scheduling scheduling) throws DaoException {
             this.connection = SQLConnection.getConnectionInstance();
             this.statement = connection.prepareStatement(SQLQueries.Scheduling.VERIFYFREETIME);
 
@@ -37,7 +37,7 @@ public class DaoScheduling {
 
     public void register(Scheduling scheduling) throws DaoException {
         try {
-            boolean schedule = this.checkSchedule(scheduling);
+            boolean schedule = this.check_schedule(scheduling);
 
             if (schedule) {
                 ErrorMessage.setMessage("Horario não disponível");
