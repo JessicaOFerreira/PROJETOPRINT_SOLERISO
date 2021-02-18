@@ -11,8 +11,10 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import sql.SQLConnection;
 import sql.SQLQueries;
+import utils.ErrorMessage;
 
 /**
  *
@@ -22,22 +24,22 @@ public class DaoScheduling {
     private Connection connection;
     private PreparedStatement statement;
     private ResultSet result;
-    
 
+    public boolean checkSchedule(Scheduling scheduling) throws DaoException, SQLException {
+        this.connection = SQLConnection.getConnectionInstance();
+        this.statement = connection.prepareStatement(SQLQueries.Scheduling.VERIFYFREETIME);
 
-    public void check_schedule(Scheduling scheduling) throws DaoException {
-            this.connection = SQLConnection.getConnectionInstance();
-            this.statement = connection.prepareStatement(SQLQueries.Scheduling.VERIFYFREETIME);
+        this.statement.setTime(1, scheduling.getHour());
+        this.statement.setDate(2, (Date) scheduling.getDate_scheduling());
 
-            this.statement.setTime(1, scheduling.getHour());
-            this.statement.setString(2, scheduling.getDate_scheduling());
+        result = this.statement.executeQuery();
 
-            return this.statement.executeQuery();
+        return result.next();
     }
 
-    public void register(Scheduling scheduling) throws DaoException {
+    public Scheduling register(Scheduling scheduling) throws DaoException {
         try {
-            boolean schedule = this.check_schedule(scheduling);
+            boolean schedule = this.checkSchedule(scheduling);
 
             if (schedule) {
                 ErrorMessage.setMessage("Horario não disponível");
@@ -55,9 +57,16 @@ public class DaoScheduling {
             this.statement.setInt(6, scheduling.getPatient_id());
             this.statement.setInt(7, scheduling.getOperation_id());
             
-            result = this.statement.executeUpdate();
+            int totalRowsAffected = this.statement.executeUpdate();
            
             this.connection.close();
+            
+            if (totalRowsAffected == 1) {
+                return scheduling;
+            } else {
+                ErrorMessage.setMessage("Erro ao realizar o cadastro do agendamento. Tente novamente.");
+                return null;
+            }
             
         } catch (Exception ex) {
             ex.printStackTrace();

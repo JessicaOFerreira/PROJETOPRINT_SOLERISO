@@ -6,6 +6,7 @@
 package dao;
 
 import entities.Operation;
+import entities.Scheduling;
 import exceptions.DaoException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import sql.SQLConnection;
 import sql.SQLQueries;
+import utils.ErrorMessage;
 
 /**
  *
@@ -25,18 +27,20 @@ public class DaoOperation {
     private PreparedStatement statement;
     private ResultSet result;
     
-    public void check_operation(Scheduling operation) throws DaoException {
+    public boolean checkOperation(Operation operation) throws DaoException, SQLException {
         this.connection = SQLConnection.getConnectionInstance();
         this.statement = connection.prepareStatement(SQLQueries.Operation.VERIFYREGISTERED);
 
         this.statement.setString(1, operation.getName());
 
-        return this.statement.executeQuery();
+        result = this.statement.executeQuery();
+        
+        return result.next();
     }
 
-    public void register(Operation operation) throws DaoException {
+    public Operation register(Operation operation) throws DaoException {
         try {
-            boolean registered = this.check_operation(operation);
+            boolean registered = this.checkOperation(operation);
 
             if (registered) {
                 ErrorMessage.setMessage("Operação já registrada");
@@ -49,9 +53,16 @@ public class DaoOperation {
             this.statement.setString(1, operation.getName());
             this.statement.setString(2, operation.getDesciption());
             
-            result = this.statement.executeUpdate();
+            int totalRowsAffected = this.statement.executeUpdate();
            
             this.connection.close();
+            
+            if (totalRowsAffected == 1) {
+                return operation;
+            } else {
+                ErrorMessage.setMessage("Erro ao realizar o cadastro da operação. Tente novamente.");
+                return null;
+            }
             
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -120,7 +131,7 @@ public class DaoOperation {
         }
     }
     
-    public Operation show_by_id(int id) throws DaoException {
+    public Operation showById(int id) throws DaoException {
         try {
             this.connection = SQLConnection.getConnectionInstance();
             this.statement = connection.prepareStatement(SQLQueries.Operation.SHOWBYID); 
