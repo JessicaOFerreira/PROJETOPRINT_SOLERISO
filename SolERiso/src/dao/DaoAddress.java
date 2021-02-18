@@ -59,7 +59,7 @@ public class DaoAddress {
      public Address register(String street, String houseNumber, String neighborhood, String city) throws DaoException {
          try {
             this.connection = SQLConnection.getConnectionInstance();
-            this.statement = connection.prepareStatement(SQLQueries.Address.REGISTER);
+            this.statement = connection.prepareStatement(SQLQueries.Address.REGISTER, this.statement.RETURN_GENERATED_KEYS);
             
             this.statement.setString(1, street);
             this.statement.setString(2, houseNumber);
@@ -68,22 +68,21 @@ public class DaoAddress {
             
             int totalRowsAffected = this.statement.executeUpdate();
             
-            this.connection.close();
-            
-            Address address = null;
-            
-             if (totalRowsAffected == 0) {
+            if (totalRowsAffected == 0) {
                 throw new SQLException("Erro ao cadastrar endereço. Nenhuma linha afetada");
             }
 
-            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
-                if (generatedKeys.next()) {
-                    address.setAddress_id((int) generatedKeys.getLong(1));
-                    return address;
-                }
-                else {
-                    throw new SQLException("Erro ao buscar id do endereço após o cadastro");
-                }
+            ResultSet generatedKeys = this.statement.getGeneratedKeys();
+
+            if (generatedKeys.next()) {
+                Address address = new Address();
+                address.setAddress_id((int) generatedKeys.getLong(1));
+
+                this.connection.close();
+                
+                return address;
+            } else {
+                throw new SQLException("Erro ao buscar id do endereço após o cadastro");
             }
         } catch (Exception ex) {
             ex.printStackTrace();

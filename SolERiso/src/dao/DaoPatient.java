@@ -74,7 +74,7 @@ public class DaoPatient {
             this.statement.setString(1, name);
             this.statement.setString(2, cpf);
             this.statement.setString(3, phone);
-            this.statement.setInt(3, address);
+            this.statement.setInt(4, address);
             
             int totalRowsAffected = this.statement.executeUpdate();
             

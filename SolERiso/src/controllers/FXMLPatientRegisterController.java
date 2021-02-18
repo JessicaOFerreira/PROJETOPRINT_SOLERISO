@@ -75,6 +75,12 @@ public class FXMLPatientRegisterController {
         return true;
     }
     
+    void renderError(String message) {
+        fieldErrorMessage.setText(message);
+        fieldErrorMessage.setVisible(true);
+        Loading.close();
+    }
+    
     @FXML
     void register(ActionEvent event) throws Exception {
         Loading.show();
@@ -95,27 +101,22 @@ public class FXMLPatientRegisterController {
             
             Address address = daoAdress.register(street, houseNumber, neighborhood, city);
             
-            if (address == null) {
+            if (address != null) {
                 DaoPatient daoPatient = new DaoPatient();
                 
                 Patient patient = daoPatient.register(name, cpf, phone, address.getAddressId());
                 
                 if (patient != null) {
-                    System.out.println("Paciente cadastrado com sucesso!");
-                } else {
-                    fieldErrorMessage.setText("Ocorreu um erro ao cadastrar o endereço do paciente");
-                    fieldErrorMessage.setVisible(true);
                     Loading.close();
+                    Routes.render(event, "/patients", true);
+                } else {
+                    this.renderError("Ocorreu um erro ao cadastrar o paciente");
                 }
             } else {
-                fieldErrorMessage.setText("Ocorreu um erro ao cadastrar o endereço do paciente");
-                fieldErrorMessage.setVisible(true);
-                Loading.close();
+                this.renderError("Ocorreu um erro ao cadastrar o endereço do paciente");
             }
         } else {
-            fieldErrorMessage.setText("Todos os campos devem ser preenchidos");
-            fieldErrorMessage.setVisible(true);
-            Loading.close();
+            this.renderError("Todos os campos devem ser preenchidos");
         }
     }
 }
