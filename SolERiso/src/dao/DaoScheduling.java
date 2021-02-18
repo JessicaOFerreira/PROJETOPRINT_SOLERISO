@@ -23,8 +23,27 @@ public class DaoScheduling {
     private PreparedStatement statement;
     private ResultSet result;
     
+
+
+    public void check_schedule(Scheduling scheduling) throws DaoException {
+            this.connection = SQLConnection.getConnectionInstance();
+            this.statement = connection.prepareStatement(SQLQueries.Scheduling.VERIFYFREETIME);
+
+            this.statement.setTime(1, scheduling.getHour());
+            this.statement.setString(2, scheduling.getDate_scheduling());
+
+            return this.statement.executeQuery();
+    }
+
     public void register(Scheduling scheduling) throws DaoException {
         try {
+            boolean schedule = this.check_schedule(scheduling);
+
+            if (schedule) {
+                ErrorMessage.setMessage("Horario não disponível");
+                return null;
+            }
+
             this.connection = SQLConnection.getConnectionInstance();
             this.statement = connection.prepareStatement(SQLQueries.Scheduling.REGISTER); 
             
@@ -36,7 +55,7 @@ public class DaoScheduling {
             this.statement.setInt(6, scheduling.getPatient_id());
             this.statement.setInt(7, scheduling.getOperation_id());
             
-            result = this.statement.executeQuery();
+            result = this.statement.executeUpdate();
            
             this.connection.close();
             

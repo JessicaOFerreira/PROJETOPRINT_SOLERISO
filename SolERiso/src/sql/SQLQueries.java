@@ -51,6 +51,9 @@ public class SQLQueries {
                                              + ", patient_id = ?"
                                              + ", operation_id = ?"
                                              + "WHERE scheduling_id = ?";
+        public static final String VERIFYFREETIME=    "SELECT * " 
+                                                    + "FROM scheduling"
+                                                    + "WHERE hour = ? AND date_scheduling = ?";
         
     }
     
@@ -68,6 +71,9 @@ public class SQLQueries {
        
        public static final String SHOWBYID =  "SELECT * FROM operation "
                                             + "WHERE operation_id = ?";
+       public static final String VERIFYREGISTERED =  "SELECT * " 
+                                                    + "FROM operation"
+                                                    + "WHERE name = ?";
     }
  
     public static class Address {
