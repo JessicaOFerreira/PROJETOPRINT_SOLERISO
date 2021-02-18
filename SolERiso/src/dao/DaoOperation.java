@@ -25,8 +25,24 @@ public class DaoOperation {
     private PreparedStatement statement;
     private ResultSet result;
     
+    public void check_operation(Scheduling scheduling) throws DaoException {
+        this.connection = SQLConnection.getConnectionInstance();
+        this.statement = connection.prepareStatement(SQLQueries.Operation.VERIFYREGISTERED);
+
+        this.statement.setString(1, operation.getName());
+
+        return this.statement.executeQuery();
+    }
+
     public void register(Operation operation) throws DaoException {
         try {
+            boolean registered = this.check_operation(operation);
+
+            if (registered) {
+                ErrorMessage.setMessage("Operação já registrada");
+                return null;
+            }
+
             this.connection = SQLConnection.getConnectionInstance();
             this.statement = connection.prepareStatement(SQLQueries.Operation.REGISTER); 
             
