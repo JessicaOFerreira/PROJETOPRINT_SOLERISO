@@ -5,6 +5,8 @@
  */
 package soleriso;
 
+import dao.DaoAdmin;
+import entities.Admin;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,11 +21,13 @@ public class SolERiso extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+        
+        Parent root = FXMLLoader.load(getClass().getResource("/screens/FXMLLogin.fxml"));
         
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
+        
         stage.show();
     }
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 20-Nov-2020 às 17:57
+-- Tempo de geração: 18-Fev-2021 às 00:58
 -- Versão do servidor: 10.4.8-MariaDB
 -- versão do PHP: 7.3.10
 
@@ -108,7 +108,7 @@ ALTER TABLE `address`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`admin_id`),
-  ADD UNIQUE KEY `login` (`login`);
+  ADD UNIQUE KEY `admin_id` (`admin_id`);
 
 --
 -- Índices para tabela `operation`
@@ -132,6 +132,40 @@ ALTER TABLE `scheduling`
   ADD KEY `admin_id` (`admin_id`),
   ADD KEY `patient_id` (`patient_id`),
   ADD KEY `operation_id` (`operation_id`);
+
+--
+-- AUTO_INCREMENT de tabelas despejadas
+--
+
+--
+-- AUTO_INCREMENT de tabela `address`
+--
+ALTER TABLE `address`
+  MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `operation`
+--
+ALTER TABLE `operation`
+  MODIFY `operation_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `patient`
+--
+ALTER TABLE `patient`
+  MODIFY `patient_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `scheduling`
+--
+ALTER TABLE `scheduling`
+  MODIFY `scheduling_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restrições para despejos de tabelas
