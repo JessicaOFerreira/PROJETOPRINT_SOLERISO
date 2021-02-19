@@ -39,6 +39,12 @@ public class DaoPatient {
             
             while (result.next()) {
                 patient = new Patient();
+                
+                patient.setName(result.getString("name"));
+                patient.setCpf(result.getString("cpf"));
+                patient.setPhoneNumber(result.getString("phone_number"));
+                patient.setAddressId(Integer.parseInt(result.getString("address_id")));
+                
                 patients.add(patient);
             }
             this.connection.close();
@@ -63,7 +69,7 @@ public class DaoPatient {
         }
         
         if (patientAlreadyExists) {
-            ErrorMessage.setMessage("Este paciente já foi cadastrado");
+            ErrorMessage.setMessage("Um paciente com este CPF já foi cadastrado");
             return null;
         }
         

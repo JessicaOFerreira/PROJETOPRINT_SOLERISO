@@ -19,7 +19,7 @@
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" style="-fx-background-color: linear-gradient(white, white, skyblue);" VBox.vgrow="ALWAYS">
          <children>
-            <ImageView fitHeight="77.0" fitWidth="150.0" layoutX="245.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="77.0" fitWidth="150.0" layoutX="289.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/logo_sol&amp;riso.png" />
                </image>
@@ -45,7 +45,6 @@
                   <Font name="Corbel" size="12.0" />
                </font>
             </Button>
-            <ListView id="patient_list" layoutX="16.0" layoutY="179.0" prefHeight="188.0" prefWidth="608.0" />
             <Button layoutX="555.0" layoutY="373.0" mnemonicParsing="false" style="-fx-background-color: #d3d3d3; -fx-background-radius: 10px;" text="PRÓXIMO" textFill="#69686b">
                <font>
                   <Font name="Corbel" size="12.0" />
@@ -56,16 +55,21 @@
                   <Font name="Corbel" size="12.0" />
                </font>
             </Button>
-            <Label layoutX="17.0" layoutY="156.0" text="NOME" textFill="#69686b">
+            <Label layoutX="134.0" layoutY="90.0" text="NOME" textFill="#69686b">
                <font>
                   <Font name="Corbel" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="558.0" layoutY="156.0" text="AÇÕES" textFill="#69686b">
+            <Label layoutX="133.0" layoutY="65.0" text="AÇÕES" textFill="#69686b">
                <font>
                   <Font name="Corbel" size="14.0" />
                </font>
             </Label>
+            <TableView fx:id="patientListTable" layoutX="18.0" layoutY="156.0" prefHeight="205.0" prefWidth="607.0">
+              <columns>
+                <TableColumn fx:id="nameColumn" prefWidth="605.0" text="Paciente" />
+              </columns>
+            </TableView>
          </children>
     </AnchorPane>
   </children>

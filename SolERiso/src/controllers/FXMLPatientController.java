@@ -5,17 +5,34 @@
  */
 package controllers;
 
+import dao.DaoPatient;
+import entities.Patient;
 import java.io.IOException;
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import services.Routes;
 
 /**
  *
  * @author johnn
  */
-public class FXMLPatientController {
+public class FXMLPatientController implements Initializable {
+    
+    @FXML
+    private TableView<Patient> patientListTable;
+    
+    @FXML
+    private TableColumn<Patient, String> nameColumn;
     
     @FXML
     void goTo(ActionEvent event) throws IOException, Exception {
@@ -37,4 +54,28 @@ public class FXMLPatientController {
         
         Routes.render(event, destinationRoute, true);
     }
+    
+    private ObservableList<Patient> patientList(List<Patient> patients) {
+//        for (int i = 0; i < patients.size(); i++) {
+//            FXCollections.observableArrayList(patients.get(i));
+//        }
+
+        return FXCollections.observableArrayList(patients);
+    }
+    
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        DaoPatient daoPatient = new DaoPatient();
+        
+        try {
+            List<Patient> patients = daoPatient.list();
+            
+            nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+            
+            patientListTable.setItems(this.patientList(patients));
+        } catch (Exception ex) {
+            System.out.println("Erro ao buscar lista de pacientes");
+        }
+        
+    } 
 }

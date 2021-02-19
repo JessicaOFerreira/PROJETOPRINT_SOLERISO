@@ -110,7 +110,7 @@ public class FXMLPatientRegisterController {
                     Loading.close();
                     Routes.render(event, "/patients", true);
                 } else {
-                    this.renderError("Ocorreu um erro ao cadastrar o paciente");
+                    this.renderError(ErrorMessage.message);
                 }
             } else {
                 this.renderError("Ocorreu um erro ao cadastrar o endereço do paciente");
