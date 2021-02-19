@@ -19,12 +19,12 @@
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" style="-fx-background-color: linear-gradient(white, white, skyblue);" VBox.vgrow="ALWAYS">
          <children>
-            <ImageView fitHeight="90.0" fitWidth="153.0" layoutX="244.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="52.0" fitWidth="94.0" layoutX="532.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/logo_sol&amp;riso.png" />
+                  <Image url="@../assets/images/logo_sol_riso-removebg-preview.png" />
                </image>
             </ImageView>
-            <Label layoutX="236.0" layoutY="75.0" text="Agendamentos">
+            <Label layoutX="235.0" layoutY="29.0" text="Agendamentos">
                <font>
                   <Font name="Corbel" size="27.0" />
                </font>

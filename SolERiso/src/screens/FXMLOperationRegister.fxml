@@ -20,12 +20,12 @@
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" style="-fx-background-color: linear-gradient(white, white, skyblue);" VBox.vgrow="ALWAYS">
          <children>
-            <ImageView fitHeight="50.0" fitWidth="34.0" layoutX="297.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="50.0" fitWidth="97.0" layoutX="519.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/logo_sol&amp;riso.png" />
+                  <Image url="@../assets/images/logo_sol_riso-removebg-preview.png" />
                </image>
             </ImageView>
-            <Label layoutX="170.0" layoutY="57.0" text="Cadastrar Procedimento">
+            <Label layoutX="184.0" layoutY="27.0" text="Cadastrar Procedimento">
                <font>
                   <Font name="Corbel" size="27.0" />
                </font>
@@ -57,7 +57,7 @@
                   <Font name="Corbel" size="15.0" />
                </font>
             </Button>
-            <Label fx:id="fieldErrorMessage" alignment="CENTER" layoutX="166.0" layoutY="97.0" prefHeight="17.0" prefWidth="282.0" textAlignment="CENTER" textFill="#e12828" />
+            <Label fx:id="fieldErrorMessage" alignment="CENTER" layoutX="162.0" layoutY="97.0" prefHeight="17.0" prefWidth="318.0" textAlignment="CENTER" textFill="#e12828" />
          </children>
     </AnchorPane>
   </children>

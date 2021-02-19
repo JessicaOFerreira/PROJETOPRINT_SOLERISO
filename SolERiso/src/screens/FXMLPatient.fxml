@@ -19,9 +19,9 @@
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" style="-fx-background-color: linear-gradient(white, white, skyblue);" VBox.vgrow="ALWAYS">
          <children>
-            <ImageView fitHeight="77.0" fitWidth="150.0" layoutX="289.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="55.0" fitWidth="109.0" layoutX="499.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/logo_sol&amp;riso.png" />
+                  <Image url="@../assets/images/logo_sol_riso-removebg-preview.png" />
                </image>
             </ImageView>
             <Button id="goToDashboard" fx:id="goToDashboard" layoutX="14.0" layoutY="24.0" mnemonicParsing="false" onAction="#goTo" prefHeight="28.0" prefWidth="68.0" style="-fx-background-color: #d1d1d1; -fx-background-radius: 10px;" text="VOLTAR" textFill="#69686b">
@@ -29,7 +29,7 @@
                   <Font name="Corbel" size="12.0" />
                </font>
             </Button>
-            <Label layoutX="266.0" layoutY="82.0" text="Pacientes">
+            <Label layoutX="266.0" layoutY="25.0" text="Pacientes">
                <font>
                   <Font name="Corbel" size="27.0" />
                </font>
@@ -55,16 +55,6 @@
                   <Font name="Corbel" size="12.0" />
                </font>
             </Button>
-            <Label layoutX="134.0" layoutY="90.0" text="NOME" textFill="#69686b">
-               <font>
-                  <Font name="Corbel" size="14.0" />
-               </font>
-            </Label>
-            <Label layoutX="133.0" layoutY="65.0" text="AÇÕES" textFill="#69686b">
-               <font>
-                  <Font name="Corbel" size="14.0" />
-               </font>
-            </Label>
             <TableView fx:id="patientListTable" layoutX="18.0" layoutY="156.0" prefHeight="205.0" prefWidth="607.0">
               <columns>
                 <TableColumn fx:id="nameColumn" prefWidth="605.0" text="Paciente" />
