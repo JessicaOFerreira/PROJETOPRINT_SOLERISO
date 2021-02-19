@@ -39,6 +39,7 @@ public class DaoPatient {
             while (result.next()) {
                 patient = new Patient();
                 
+                patient.setId(Integer.parseInt(result.getString("patient_id")));
                 patient.setName(result.getString("name"));
                 patient.setCpf(result.getString("cpf"));
                 patient.setPhoneNumber(result.getString("phone_number"));

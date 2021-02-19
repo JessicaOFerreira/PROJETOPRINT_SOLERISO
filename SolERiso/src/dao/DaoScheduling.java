@@ -12,6 +12,8 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import sql.SQLConnection;
 import sql.SQLQueries;
 import utils.ErrorMessage;
@@ -29,8 +31,10 @@ public class DaoScheduling {
         this.connection = SQLConnection.getConnectionInstance();
         this.statement = connection.prepareStatement(SQLQueries.Scheduling.VERIFYFREETIME);
 
-        this.statement.setTime(1, scheduling.getHour());
-        this.statement.setDate(2, (Date) scheduling.getDate_scheduling());
+        System.out.println(SQLQueries.Scheduling.VERIFYFREETIME);
+        
+        this.statement.setString(1, scheduling.getHour());
+        this.statement.setDate(2, java.sql.Date.valueOf(scheduling.getDate_scheduling()));
 
         result = this.statement.executeQuery();
 
@@ -50,8 +54,8 @@ public class DaoScheduling {
             this.statement = connection.prepareStatement(SQLQueries.Scheduling.REGISTER); 
             
             this.statement.setString(1, scheduling.getReport());
-            this.statement.setTime(2, scheduling.getHour());
-            this.statement.setDate(3, (Date) scheduling.getDate_scheduling());
+            this.statement.setString(2, scheduling.getHour());      
+            this.statement.setDate(3, java.sql.Date.valueOf(scheduling.getDate_scheduling()));
             this.statement.setFloat(4, scheduling.getPrice());
             this.statement.setInt(5, scheduling.getAdmin_id());
             this.statement.setInt(6, scheduling.getPatient_id());
@@ -97,8 +101,8 @@ public class DaoScheduling {
             this.statement = connection.prepareStatement(SQLQueries.Scheduling.UPDATE); 
 
             this.statement.setString(1, scheduling.getReport());
-            this.statement.setTime(2, scheduling.getHour());
-            this.statement.setDate(3, (Date) scheduling.getDate_scheduling());
+            this.statement.setString(2, scheduling.getHour());
+            this.statement.setDate(3, java.sql.Date.valueOf(scheduling.getDate_scheduling()));
             this.statement.setFloat(4, scheduling.getPrice());
             this.statement.setInt(5, scheduling.getAdmin_id());
             this.statement.setInt(6, scheduling.getPatient_id());

@@ -11,12 +11,21 @@ package services;
  */
 public class Auth {
     private static Boolean isAuth;
+    private static int adminLoggedIn;
+
+    public static int getAdminLoggedIn() {
+        return adminLoggedIn;
+    }
+
+    public static void setAdminLoggedIn(int adminLoggedIn) {
+        Auth.adminLoggedIn = adminLoggedIn;
+    }
 
     public Boolean getIsAuth() {
         return isAuth;
     }
 
     public void setIsAuth(Boolean isAuth) {
-        this.isAuth = isAuth;
+        Auth.isAuth = isAuth;
     }
 }

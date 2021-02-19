@@ -24,12 +24,12 @@
                   <Font name="Corbel" size="27.0" />
                </font>
             </Label>
-            <Label layoutX="42.0" layoutY="116.0" text="Paciente">
+            <Label layoutX="43.0" layoutY="116.0" text="Paciente *">
                <font>
                   <Font name="Corbel" size="13.0" />
                </font>
             </Label>
-            <Label layoutX="343.0" layoutY="116.0" text="Procedimento">
+            <Label layoutX="343.0" layoutY="116.0" text="Procedimento *">
                <font>
                   <Font name="Corbel" size="13.0" />
                </font>
@@ -49,18 +49,17 @@
                   <Font name="Corbel" size="12.0" />
                </font>
             </Button>
-            <Label layoutX="343.0" layoutY="176.0" text="Hora">
+            <Label layoutX="343.0" layoutY="176.0" text="Hora *">
                <font>
                   <Font name="Corbel" size="13.0" />
                </font>
             </Label>
-            <TextField id="scheduling_procedure" fx:id="hourField" layoutX="342.0" layoutY="194.0" prefHeight="26.0" prefWidth="255.0" style="-fx-background-color: transparent; -fx-border-color: #0b97b0; -fx-border-width: 0 0 1 0;" />
-            <Label layoutX="45.0" layoutY="176.0" text="Data">
+            <Label layoutX="45.0" layoutY="176.0" text="Data *">
                <font>
                   <Font name="Corbel" size="13.0" />
                </font>
             </Label>
-            <Label layoutX="42.0" layoutY="245.0" text="Preço">
+            <Label layoutX="42.0" layoutY="245.0" text="Preço *">
                <font>
                   <Font name="Corbel" size="13.0" />
                </font>
@@ -68,14 +67,15 @@
             <Label fx:id="fieldErrorMessage" alignment="CENTER" layoutX="143.0" layoutY="94.0" prefHeight="17.0" prefWidth="354.0" textAlignment="CENTER" textFill="#e12828" />
             <TextField id="scheduling_procedure" fx:id="priceField" layoutX="40.0" layoutY="256.0" prefHeight="26.0" prefWidth="182.0" style="-fx-background-color: transparent; -fx-border-color: #0b97b0; -fx-border-width: 0 0 1 0;" />
             <TextArea fx:id="reportField" layoutX="46.0" layoutY="331.0" prefHeight="318.0" prefWidth="548.0" />
-            <Label layoutX="44.0" layoutY="297.0" text="Relatório Médico">
-               <font>
-                  <Font name="Corbel" size="18.0" />
-               </font>
-            </Label>
             <DatePicker fx:id="dateField" layoutX="44.0" layoutY="194.0" prefHeight="25.0" prefWidth="255.0" showWeekNumbers="true" />
             <ComboBox fx:id="patientSelect" layoutX="40.0" layoutY="137.0" prefHeight="25.0" prefWidth="255.0" />
             <ComboBox fx:id="operationSelect" layoutX="342.0" layoutY="137.0" prefHeight="25.0" prefWidth="255.0" />
+            <Label layoutX="42.0" layoutY="304.0" text="Relatório medico">
+               <font>
+                  <Font name="Corbel" size="13.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="hourSelect" layoutX="342.0" layoutY="194.0" prefHeight="25.0" prefWidth="255.0" />
          </children>
     </AnchorPane>
   </children>

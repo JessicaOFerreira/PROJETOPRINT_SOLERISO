@@ -52,7 +52,7 @@ public class SQLQueries {
                                              + ", operation_id = ?"
                                              + "WHERE scheduling_id = ?";
         public static final String VERIFYFREETIME=    "SELECT * " 
-                                                    + "FROM scheduling"
+                                                    + "FROM scheduling "
                                                     + "WHERE hour = ? AND date_scheduling = ?";
         
     }

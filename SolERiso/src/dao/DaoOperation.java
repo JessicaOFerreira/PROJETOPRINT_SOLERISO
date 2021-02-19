@@ -83,6 +83,7 @@ public class DaoOperation {
             while (result.next()) {
                 operation = new Operation();
                 
+                operation.setId(Integer.parseInt(result.getString("operation_id")));
                 operation.setName(result.getString("name"));
                 operation.setDescription(result.getString("description"));
                 operation.setActive(result.getInt("active"));

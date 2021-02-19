@@ -6,6 +6,7 @@
 package entities;
 
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -15,8 +16,8 @@ import java.util.Date;
 public class Scheduling {
     private int id;
     private String report;
-    private Time hour;
-    private Date date_scheduling;
+    private String hour;
+    private LocalDate date_scheduling;
     private float price;
     private int admin_id;
     private int patient_id;
@@ -30,11 +31,11 @@ public class Scheduling {
         return report;
     }
 
-    public Time getHour() {
+    public String getHour() {
         return hour;
     }
         
-    public Date getDate_scheduling() {
+    public LocalDate getDate_scheduling() {
         return date_scheduling;
     }
 
@@ -59,11 +60,11 @@ public class Scheduling {
         this.admin_id = admin_id;
     }
 
-    public void setDate_scheduling(Date date_scheduling) {
+    public void setDate_scheduling(LocalDate date_scheduling) {
         this.date_scheduling = date_scheduling;
     }
 
-    public void setHour(Time hour) {
+    public void setHour(String hour) {
         this.hour = hour;
     }
 

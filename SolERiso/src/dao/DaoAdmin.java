@@ -73,6 +73,7 @@ public class DaoAdmin implements IDaoAdmin {
                 admin.setIsDentist(result.getBoolean("dentist"));
                 
                 authenticated.setIsAuth(true);
+                Auth.setAdminLoggedIn(Integer.parseInt(result.getString("admin_id")));
             } else {
                 // No data
                 authenticated.setIsAuth(false);
@@ -108,7 +109,7 @@ public class DaoAdmin implements IDaoAdmin {
         
         try {
             this.connection = SQLConnection.getConnectionInstance();
-            this.statement = connection.prepareStatement(SQLQueries.Admin.REGISTER);
+            this.statement = connection.prepareStatement(SQLQueries.Admin.REGISTER, this.statement.RETURN_GENERATED_KEYS);
             
             this.statement.setString(1, login);
             this.statement.setString(2, password);
@@ -116,22 +117,29 @@ public class DaoAdmin implements IDaoAdmin {
             
             int totalRowsAffected = this.statement.executeUpdate();
             
-            this.connection.close();
-            
-            Admin admin = null;
+            Admin admin;
             Auth authenticated = new Auth();
             
             if (totalRowsAffected == 1) {
-                admin = new Admin();
+                ResultSet generatedKeys = this.statement.getGeneratedKeys();
                 
-                admin.setLogin(login);
-                admin.setIsDentist(dentist);
+                if (generatedKeys.next()) {
+                    admin = new Admin();
                 
-                authenticated.setIsAuth(true);
-                
-                return admin;
+                    admin.setLogin(login);
+                    admin.setIsDentist(dentist);
+
+                    authenticated.setIsAuth(true);
+                    Auth.setAdminLoggedIn((int) generatedKeys.getLong(1));
+                    
+                    this.connection.close();
+
+                    return admin;
+                } else {
+                    throw new SQLException("Erro ao buscar id do admin após o cadastro");
+                }
             } else {
-                ErrorMessage.setMessage("Erro ao realizar o cadastro. Tente novamente.");
+                ErrorMessage.setMessage("Erro ao realizar o cadastro do admin. Tente novamente.");
                 return null;
             }
         } catch (Exception ex) {
