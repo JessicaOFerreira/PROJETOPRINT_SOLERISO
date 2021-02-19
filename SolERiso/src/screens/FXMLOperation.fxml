@@ -45,22 +45,17 @@
                   <Font name="Corbel" size="12.0" />
                </font>
             </Button>
-            <ListView id="procedure_list" layoutX="16.0" layoutY="180.0" prefHeight="188.0" prefWidth="608.0" />
-            <Label layoutX="20.0" layoutY="160.0" text="NOME" textFill="#69686b">
-               <font>
-                  <Font name="Corbel" size="14.0" />
-               </font>
-            </Label>
-            <Label layoutX="528.0" layoutY="160.0" text="AÇÕES" textFill="#69686b">
-               <font>
-                  <Font name="Corbel" size="14.0" />
-               </font>
-            </Label>
             <Button layoutX="14.0" layoutY="371.0" mnemonicParsing="false" style="-fx-background-color: #d3d3d3; -fx-background-radius: 10px;" text="PRÓXIMO" textFill="#69686b">
                <font>
                   <Font name="Corbel" size="12.0" />
                </font>
             </Button>
+            <TableView fx:id="operationListTable" layoutX="17.0" layoutY="156.0" prefHeight="205.0" prefWidth="607.0">
+               <columns>
+                  <TableColumn fx:id="nameColumn" prefWidth="232.0" text="Procedimento" />
+                  <TableColumn fx:id="descriptionColumn" prefWidth="372.0" text="Descrição" />
+               </columns>
+            </TableView>
             <Button layoutX="549.0" layoutY="371.0" mnemonicParsing="false" style="-fx-background-color: #d3d3d3; -fx-background-radius: 10px;" text="ANTERIOR" textFill="#69686b">
                <font>
                   <Font name="Corbel" size="12.0" />

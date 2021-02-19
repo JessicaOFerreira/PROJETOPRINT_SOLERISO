@@ -55,12 +55,12 @@ public class FXMLPatientController implements Initializable {
         Routes.render(event, destinationRoute, true);
     }
     
-    private ObservableList<Patient> patientList(List<Patient> patients) {
-//        for (int i = 0; i < patients.size(); i++) {
-//            FXCollections.observableArrayList(patients.get(i));
-//        }
-
-        return FXCollections.observableArrayList(patients);
+    private void renderPatientList(List<Patient> patients) {
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        
+        ObservableList<Patient> observableList = FXCollections.observableArrayList(patients);
+                
+        patientListTable.setItems(observableList);
     }
     
     @Override
@@ -70,9 +70,7 @@ public class FXMLPatientController implements Initializable {
         try {
             List<Patient> patients = daoPatient.list();
             
-            nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-            
-            patientListTable.setItems(this.patientList(patients));
+            renderPatientList(patients);
         } catch (Exception ex) {
             System.out.println("Erro ao buscar lista de pacientes");
         }

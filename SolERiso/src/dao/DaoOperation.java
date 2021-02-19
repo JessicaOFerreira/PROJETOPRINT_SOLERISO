@@ -69,24 +69,30 @@ public class DaoOperation {
         }
     }
     
-    public List<Operation> getContatos() throws DaoException {
+    public List<Operation> list() throws DaoException {
         try{
             this.connection = SQLConnection.getConnectionInstance();
             this.statement = connection.prepareStatement(SQLQueries.Operation.LIST);
            
             result = this.statement.executeQuery();
             
-            List<Operation> Operations = new ArrayList<>();
+            List<Operation> operations = new ArrayList<>();
             
             Operation operation;
             
             while (result.next()) {
                 operation = new Operation();
-                Operations.add(operation);
+                
+                operation.setName(result.getString("name"));
+                operation.setDescription(result.getString("description"));
+                operation.setActive(result.getInt("active"));
+                
+                operations.add(operation);
             }
+            
             this.connection.close();
 
-            return Operations;
+            return operations;
             
         } catch (Exception ex) {
             ex.printStackTrace();
