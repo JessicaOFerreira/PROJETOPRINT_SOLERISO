@@ -42,6 +42,14 @@ public class Routes {
                 destinationURL = screensPath + "/FXMLPatientRegister.fxml";
                 destinationScreenName = "Novo paciente";
             break;
+            case "/operations":
+                destinationURL = screensPath + "/FXMLOperation.fxml";
+                destinationScreenName = "Procedimentos";
+            break;
+            case "/operation-register":
+                destinationURL = screensPath + "/FXMLOperationRegister.fxml";
+                destinationScreenName = "Novo procedimento";
+            break;
             default:
                 throw new IllegalArgumentException("Página não encontrada");
         }

@@ -72,7 +72,7 @@ public class SQLQueries {
        public static final String SHOWBYID =  "SELECT * FROM operation "
                                             + "WHERE operation_id = ?";
        public static final String VERIFYREGISTERED =  "SELECT * " 
-                                                    + "FROM operation"
+                                                    + "FROM operation "
                                                     + "WHERE name = ?";
     }
  

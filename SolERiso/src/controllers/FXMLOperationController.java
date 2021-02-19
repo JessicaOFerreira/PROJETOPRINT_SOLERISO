@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controllers;
 
 import java.io.IOException;
@@ -11,12 +6,17 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import services.Routes;
 
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 /**
  *
  * @author johnn
  */
-public class FXMLDashboardController {
-    
+public class FXMLOperationController {
     
     @FXML
     void goTo(ActionEvent event) throws IOException, Exception {
@@ -26,14 +26,14 @@ public class FXMLDashboardController {
         String destinationRoute;
         
         switch (route) {
-            case "goToPatient":
-                destinationRoute = "/patients";
+            case "goToDashboard":
+                destinationRoute = "/dashboard";
             break;
-            case "goToOperation":
-                destinationRoute = "/operations";
+            case "goToOperationRegister":
+                destinationRoute = "/operation-register";
             break;
             default:
-                 throw new IllegalArgumentException("Página não encontrada");
+                 throw new IllegalArgumentException("Destino não encontrado no evento");
         }
         
         Routes.render(event, destinationRoute, true);

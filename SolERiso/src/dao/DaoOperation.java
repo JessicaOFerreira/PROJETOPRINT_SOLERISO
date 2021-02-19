@@ -6,7 +6,6 @@
 package dao;
 
 import entities.Operation;
-import entities.Scheduling;
 import exceptions.DaoException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -32,7 +31,7 @@ public class DaoOperation {
         this.statement = connection.prepareStatement(SQLQueries.Operation.VERIFYREGISTERED);
 
         this.statement.setString(1, operation.getName());
-
+        
         result = this.statement.executeQuery();
         
         return result.next();
