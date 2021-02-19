@@ -8,12 +8,11 @@ package dao;
 import entities.Scheduling;
 import exceptions.DaoException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.List;
 import sql.SQLConnection;
 import sql.SQLQueries;
 import utils.ErrorMessage;
@@ -26,12 +25,48 @@ public class DaoScheduling {
     private Connection connection;
     private PreparedStatement statement;
     private ResultSet result;
+    
+    public List<Scheduling> list() throws DaoException {
+        try{
+            this.connection = SQLConnection.getConnectionInstance();
+            this.statement = connection.prepareStatement(SQLQueries.Scheduling.LIST);
+           
+            result = this.statement.executeQuery();
+            
+            List<Scheduling> schedulings = new ArrayList<>();
+            
+            Scheduling scheduling;
+            
+            while (result.next()) {
+                scheduling = new Scheduling();
+                
+                scheduling.setPatient_name(result.getString("name"));
+                scheduling.setPatient_cpf(result.getString("cpf"));
+                scheduling.setAdmin_id(Integer.parseInt(result.getString("admin_id")));
+                scheduling.setPatient_id(Integer.parseInt(result.getString("patient_id")));
+                scheduling.setOperation_id(Integer.parseInt(result.getString("operation_id")));
+                scheduling.setDate_scheduling(result.getDate("date_scheduling").toLocalDate());
+                scheduling.setHour(result.getString("hour"));
+                scheduling.setPrice(Float.parseFloat(result.getString("price")));
+                scheduling.setReport(result.getString("report"));
+                
+                schedulings.add(scheduling);
+            }
+            
+            this.connection.close();
+
+            return schedulings;
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            System.out.println(ex);
+            throw new DaoException("PROBLEMA AO LISTAR Agendamentos - Contate o ADM");
+        }
+    }
 
     public boolean checkSchedule(Scheduling scheduling) throws DaoException, SQLException {
         this.connection = SQLConnection.getConnectionInstance();
         this.statement = connection.prepareStatement(SQLQueries.Scheduling.VERIFYFREETIME);
-
-        System.out.println(SQLQueries.Scheduling.VERIFYFREETIME);
         
         this.statement.setString(1, scheduling.getHour());
         this.statement.setDate(2, java.sql.Date.valueOf(scheduling.getDate_scheduling()));

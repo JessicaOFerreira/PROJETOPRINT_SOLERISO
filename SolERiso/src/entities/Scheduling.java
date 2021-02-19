@@ -5,9 +5,7 @@
  */
 package entities;
 
-import java.sql.Time;
 import java.time.LocalDate;
-import java.util.Date;
 
 /**
  *
@@ -22,6 +20,24 @@ public class Scheduling {
     private int admin_id;
     private int patient_id;
     private int operation_id;
+    private String patient_name;
+    private String patient_cpf;
+
+    public String getPatient_cpf() {
+        return patient_cpf;
+    }
+
+    public void setPatient_cpf(String patient_cpf) {
+        this.patient_cpf = patient_cpf;
+    }
+
+    public String getPatient_name() {
+        return patient_name;
+    }
+
+    public void setPatient_name(String patient_name) {
+        this.patient_name = patient_name;
+    }
     
     public int getId(){
         return id;

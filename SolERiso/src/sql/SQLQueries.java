@@ -40,7 +40,7 @@ public class SQLQueries {
     public static class Scheduling {
         public static final String REGISTER =  "INSERT INTO scheduling (report, hour, date_scheduling, price, admin_id, patient_id, operation_id)"
                                              + "VALUES (?,?,?,?,?,?,?)";
-        public static final String LIST   =    "SELECT * FROM scheduling";
+        public static final String LIST   =    "SELECT * FROM scheduling, patient WHERE scheduling.patient_id = patient.patient_id";
         public static final String REMOVE =    "DELETE FROM scheduling WHERE scheduling_id = ?";
         public static final String UPDATE =    "UPDATE scheduling"
                                              + "SET report = ?"

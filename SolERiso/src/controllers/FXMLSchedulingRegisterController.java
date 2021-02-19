@@ -144,7 +144,7 @@ public class FXMLSchedulingRegisterController implements Initializable {
             scheduling.setPatient_id(selectedPatient.getId());
             scheduling.setOperation_id(selectedOperation.getId());
             scheduling.setDate_scheduling(dateField.getValue());
-            scheduling.setHour(hourSelect.getValue());
+            scheduling.setHour(hourSelect.getValue() + ":00:00");
             scheduling.setPrice(Float.parseFloat(priceField.getText()));
             scheduling.setReport(reportField.getText());
             

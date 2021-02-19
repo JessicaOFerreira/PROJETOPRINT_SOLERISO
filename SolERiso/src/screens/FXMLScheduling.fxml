@@ -45,12 +45,6 @@
                   <Font name="Corbel" size="12.0" />
                </font>
             </Button>
-            <ListView id="procedure_list" layoutX="16.0" layoutY="168.0" prefHeight="188.0" prefWidth="608.0" />
-            <Label layoutX="525.0" layoutY="147.0" text="AÇÕES" textFill="#69686b">
-               <font>
-                  <Font name="Corbel" size="14.0" />
-               </font>
-            </Label>
             <Button layoutX="558.0" layoutY="364.0" mnemonicParsing="false" style="-fx-background-color: #d3d3d3; -fx-background-radius: 10px;" text="PRÓXIMO" textFill="#69686b">
                <font>
                   <Font name="Corbel" size="12.0" />
@@ -61,21 +55,14 @@
                   <Font name="Corbel" size="12.0" />
                </font>
             </Button>
-            <Label layoutX="15.0" layoutY="151.0" text="NOME" textFill="#69686b">
-               <font>
-                  <Font name="Corbel" size="14.0" />
-               </font>
-            </Label>
-            <Label layoutX="224.0" layoutY="147.0" text="DATA" textFill="#69686b">
-               <font>
-                  <Font name="Corbel" size="14.0" />
-               </font>
-            </Label>
-            <Label layoutX="382.0" layoutY="147.0" text="HORA" textFill="#69686b">
-               <font>
-                  <Font name="Corbel" size="14.0" />
-               </font>
-            </Label>
+            <TableView fx:id="schedulingListTable" layoutX="16.0" layoutY="152.0" prefHeight="200.0" prefWidth="609.0">
+              <columns>
+                <TableColumn fx:id="patientColumn" prefWidth="213.0" text="Paciente" />
+                  <TableColumn fx:id="patientCPFColumn" prefWidth="157.0" text="CPF" />
+                <TableColumn fx:id="dateColumn" minWidth="0.0" prefWidth="125.0" text="Data" />
+                  <TableColumn fx:id="hourColumn" maxWidth="540.0" prefWidth="113.0" text="Hora" />
+              </columns>
+            </TableView>
          </children>
     </AnchorPane>
   </children>
