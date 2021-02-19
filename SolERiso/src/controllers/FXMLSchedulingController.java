@@ -15,8 +15,7 @@ import services.Routes;
  *
  * @author johnn
  */
-public class FXMLDashboardController {
-    
+public class FXMLSchedulingController {
     
     @FXML
     void goTo(ActionEvent event) throws IOException, Exception {
@@ -26,17 +25,14 @@ public class FXMLDashboardController {
         String destinationRoute;
         
         switch (route) {
-            case "goToPatient":
-                destinationRoute = "/patients";
+            case "goToDashboard":
+                destinationRoute = "/dashboard";
             break;
-            case "goToOperation":
-                destinationRoute = "/operations";
-            break;
-            case "goToScheduling":
-                destinationRoute = "/schedulings";
+            case "goToSchedulingRegister":
+                destinationRoute = "/scheduling-register";
             break;
             default:
-                throw new IllegalArgumentException("Página não encontrada - code 1");
+                 throw new IllegalArgumentException("Destino não encontrado no evento");
         }
         
         Routes.render(event, destinationRoute, true);

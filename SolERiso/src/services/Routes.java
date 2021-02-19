@@ -50,6 +50,14 @@ public class Routes {
                 destinationURL = screensPath + "/FXMLOperationRegister.fxml";
                 destinationScreenName = "Novo procedimento";
             break;
+            case "/schedulings":
+                destinationURL = screensPath + "/FXMLScheduling.fxml";
+                destinationScreenName = "Agendamentos";
+            break;
+            case "/scheduling-register":
+                destinationURL = screensPath + "/FXMLSchedulingRegister.fxml";
+                destinationScreenName = "Novo agendamento";
+            break;
             default:
                 throw new IllegalArgumentException("Página não encontrada");
         }
