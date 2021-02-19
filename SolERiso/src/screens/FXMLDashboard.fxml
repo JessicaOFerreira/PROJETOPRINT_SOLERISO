@@ -41,7 +41,7 @@
                   <Font name="Corbel" size="13.0" />
                </font>
             </Button>
-            <Button id="btn_exit" layoutX="543.0" layoutY="66.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="73.0" style="-fx-background-color: SALMON;" text="SAIR">
+            <Button id="btn_exit" layoutX="543.0" layoutY="66.0" mnemonicParsing="false" onAction="#logout" prefHeight="28.0" prefWidth="73.0" style="-fx-background-color: SALMON;" text="SAIR">
                <font>
                   <Font name="Corbel" size="13.0" />
                </font>

@@ -9,6 +9,7 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import services.Auth;
 import services.Routes;
 
 /**
@@ -40,5 +41,13 @@ public class FXMLDashboardController {
         }
         
         Routes.render(event, destinationRoute, true);
+    }
+    
+    @FXML
+    void logout(ActionEvent event) throws Exception {
+        Auth authentication = new Auth();
+        authentication.setIsAuth(false);
+        
+        Routes.render(event, "/login", true);
     }
 }
